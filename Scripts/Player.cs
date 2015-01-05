@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,7 +12,11 @@ public class Player : MonoBehaviour
 	public  float BoostSpeed = 15f, DefaultSpeed = 10f, SlowSpeed = 5f;
 	public float 
 		ForwardSpeed = 10f,
-		SidewayMoveAmount = 1f;
+		SidewayMoveAmount = 1f,
+		immunityBlinkSpeed = .5f;
+
+	private Collider col;
+	private Renderer rend;
 
 	//Speed modifier timers
 	private float 
@@ -38,10 +43,16 @@ public class Player : MonoBehaviour
 		noPersonalInputTimer = -1,
 		noPersonalInputDuration = 0;
 
+	private float
+		tempReverseDirectionTimer = -1,
+		tempReverseDirectionDuration = 0;
+
 	private bool
 		affectedByOthers = true,
 		enviromentImmunity = false,
 		personalInput = true;
+
+	private float blinkTimer = 0;
 
 	
 	private int 
@@ -57,6 +68,9 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		if (gameManager == null) return;
+		rend = gameObject.renderer;
+		col = gameObject.collider;
+
 		OLKeyCodes = gameManager.LeftKeyCodes;
 		ORKeyCodes = gameManager.RightKeyCodes;
 	}
@@ -92,6 +106,8 @@ public class Player : MonoBehaviour
 			if (enviromentImmunityTimer >= enviromentImmunityDuration)
 			{
 				enviromentImmunity = false;
+				col.enabled = true;
+				rend.enabled = true;
 				enviromentImmunityTimer = -1;
 			}
 		}
@@ -118,9 +134,25 @@ public class Player : MonoBehaviour
 			}
 		}
 
+		//Reverse direction duration
+		if (tempReverseDirectionTimer >= 0)
+		{
+			tempReverseDirectionTimer += Time.deltaTime;
+			if (tempReverseDirectionTimer >= tempReverseDirectionDuration)
+			{
+				moveDirection *= -1;
+				tempReverseDirectionTimer = -1;
+			}
+		}
+
 		if (enviromentImmunity)
 		{
-			//Todo
+			if (Time.time - blinkTimer > immunityBlinkSpeed)
+			{
+				rend.enabled = !rend.enabled;
+				blinkTimer = Time.time;
+			}
+				
 		}
 
 		if(affectedByOthers)
@@ -198,10 +230,25 @@ public class Player : MonoBehaviour
 		affectedByOthers = false;
 	}
 
+	public void SetTempReverseDurection(float time)
+	{
+		tempReverseDirectionTimer = 0;
+		tempReverseDirectionDuration = time;
+		moveDirection *= -1;
+	}
+
 	public void SetEnviromentalImmunity(float time)
 	{
+		if (col.enabled == false || rend.enabled == false)
+		{
+			Debug.LogError("Renderer or collider not enabled");
+			return;
+		}
+
 		enviromentImmunity = true;
+		enviromentImmunityTimer = 0;
 		enviromentImmunityDuration = time;
+		col.enabled = false;
 	}
 
 	public void SetReversePersonalInput(float time)
