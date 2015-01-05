@@ -206,15 +206,10 @@ public class Player : MonoBehaviour
 
 	public void SetReversePersonalInput(float time)
 	{
-		if (reverseControlDuration > -1)
-		{
-			reverseControlDuration = time;
-			return;
-		}
+		if (reverseControlTimer < 0)
+			controlDirection *= -1;
 		reverseControlDuration = time;
 		reverseControlTimer = 0;
-		controlDirection *= -1;
-
 	}
 
 	public void SetDirection(int dir)
