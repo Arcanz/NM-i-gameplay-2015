@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 	private Collider col;
 	private Renderer rend;
 
+	#region Timers and duration
+
 	//Speed modifier timers
 	private float 
 		speedModifierTimer = -1,
@@ -46,6 +48,8 @@ public class Player : MonoBehaviour
 	private float
 		tempReverseDirectionTimer = -1,
 		tempReverseDirectionDuration = 0;
+
+	#endregion
 
 	private bool
 		affectedByOthers = true,
@@ -78,6 +82,7 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		#region "Powerup" timers
 		//No personal input duration
 		if (noPersonalInputTimer >= 0)
 		{
@@ -140,7 +145,7 @@ public class Player : MonoBehaviour
 			tempReverseDirectionTimer += Time.deltaTime;
 			if (tempReverseDirectionTimer >= tempReverseDirectionDuration)
 			{
-				moveDirection *= -1;
+				TurnPlayerAround();
 				tempReverseDirectionTimer = -1;
 			}
 		}
@@ -152,10 +157,11 @@ public class Player : MonoBehaviour
 				rend.enabled = !rend.enabled;
 				blinkTimer = Time.time;
 			}
-				
-		}
 
-		if(affectedByOthers)
+		}
+		#endregion
+
+		if (affectedByOthers)
 			handleOtherPlayersInputMovement();
 
 		if (personalInput)
@@ -201,6 +207,11 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(tmp.x + (amount*direction), tmp.y, tmp.z);
 	}
 
+	private void TurnPlayerAround()
+	{
+		//TODO: itween the fuckers
+		moveDirection *= -1;
+	}
 
 	public void SetNoPersonalInput(float time)
 	{
@@ -221,6 +232,9 @@ public class Player : MonoBehaviour
 		speedModifierTimer = 0;
 		ForwardSpeed = 0;
 		speedModifierDuration = time;
+		//Ignore input from others
+		SetNoPersonalInput(time);
+		SetOtherInputImmunity(time);
 	}
 
 	public void SetOtherInputImmunity(float time)
@@ -234,7 +248,7 @@ public class Player : MonoBehaviour
 	{
 		tempReverseDirectionTimer = 0;
 		tempReverseDirectionDuration = time;
-		moveDirection *= -1;
+		TurnPlayerAround();
 	}
 
 	public void SetEnviromentalImmunity(float time)
@@ -265,9 +279,15 @@ public class Player : MonoBehaviour
 		controlDirection = dir;
 	}
 
+	public void SetReverseAll(Vector3 powerupPos)
+	{
+		gameManager.IhitReverseAll(powerupPos.x);
+	}
+
 	public void SetReverseDirection()
 	{
-		moveDirection *= -1;
+		TurnPlayerAround();
+		controlDirection *= -1;
 	}
 
 	public void SetBoost(float time)
