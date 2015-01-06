@@ -15,8 +15,14 @@ public class Player : MonoBehaviour
 		ForwardSpeed = 10f,
 		SidewayMoveAmount = 1f,
 		TurnSpeed = 0.1f,
-		immunityBlinkSpeed = .5f;
+		immunityBlinkSpeed = .5f,
+		previousZpos;
 
+	[HideInInspector]
+	public int Score { get { return hurdleScore + distanceScore; } }
+
+	private int distanceScore,
+		hurdleScore;
 	private Collider col;
 	private Renderer rend;
 
@@ -176,8 +182,24 @@ public class Player : MonoBehaviour
 			if (Input.GetKeyDown(leftKeyCode))
 				horizontalMove(-SidewayMoveAmount, controlDirection);
 		}
-		
-		
+		var pos = (int) transform.position.z;
+		if (gameManager.Direction > 0)
+		{
+			if (pos > previousZpos)
+			{
+				distanceScore++;
+				previousZpos = pos;
+			}
+		}
+		else {
+			if (pos < previousZpos)
+			{
+				distanceScore++;
+				previousZpos = pos;
+			}
+		}
+
+		previousZpos = transform.position.z;
 		moveForward(Time.deltaTime);
 
 	}

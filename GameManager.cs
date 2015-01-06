@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour {
 	private List<KeyCode> rightCodes;
 	private int 
 		direction = 1;
+	private float distance;
+
+	[HideInInspector]
+	public int Direction { get { return direction} }
 	public List<Player> Players
 	{
 		//NOTE: Gets new players once, then stores it
@@ -45,15 +50,16 @@ public class GameManager : MonoBehaviour {
 				leadingPlayer = player;
 			if (direction>0)
 			{
-				if (leadingPlayer.transform.position.x < player.transform.position.x)
+				if (leadingPlayer.transform.position.y < player.transform.position.y)
 					leadingPlayer = player;
 			}
 			else
 			{
-				if (leadingPlayer.transform.position.x > player.transform.position.x)
+				if (leadingPlayer.transform.position.y > player.transform.position.y)
 					leadingPlayer = player;
 			}
 		}
+		distance += Math.Abs(distance - leadingPlayer.transform.position.y);
 	}
 
 	private void ReverseAllPlayers(float pivotPointX, float time)
