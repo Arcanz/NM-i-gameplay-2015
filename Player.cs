@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 		TurnSpeed = 0.1f,
 		immunityBlinkSpeed = .5f;
 
+    public int ID;
 	private Collider col;
     private SkinnedMeshRenderer rend;
 
@@ -179,7 +180,6 @@ public class Player : MonoBehaviour
 				horizontalMove(-SidewayMoveAmount, controlDirection);
 		}
 		
-		
 		moveForward(Time.deltaTime);
 
 	}
@@ -306,4 +306,9 @@ public class Player : MonoBehaviour
 		speedModifierDuration = time;
 		Debug.Log("HitBoost");
 	}
+
+    public void SetDead()
+    {
+        gameManager.KillPlayer(ID);
+    }
 }
