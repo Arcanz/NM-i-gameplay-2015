@@ -7,6 +7,8 @@ public class Root : MonoBehaviour {
 	float timer;
 	void OnTriggerEnter(Collider playerCollider)
 	{
+		
+		animation.Play("LockRoot");
 		playerCollider.GetComponent<Player>().SetRoot(1.5f);
 		notOpened = true;
 	}
@@ -18,13 +20,9 @@ public class Root : MonoBehaviour {
 	{
 		if(notOpened)
 			timer += Time.deltaTime;
-		if(timer > 1.5f)
-		{
-			if(animation != null)
-				animation.Play("OpenRoot");
-		}	
 		if(timer > 2f)
+		{
 			Despawn();
-		
+		}
 	}
 }
