@@ -207,9 +207,10 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(tmp.x + (amount*direction), tmp.y, tmp.z);
 	}
 
-	private void TurnPlayerAround()
+	private void TurnPlayerAround(float time)
 	{
 		//TODO: itween the fuckers
+		iTween.RotateBy(gameObject,new Vector3(0,180,0),time);
 		moveDirection *= -1;
 	}
 

@@ -55,18 +55,24 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	private void ReverseAllPlayers(float pivotPointX)
+	private void ReverseAllPlayers(float pivotPointX, float time)
 	{
 		direction *= -1;
 		foreach (var player in players)
 		{
 			player.SetReverseDirection();
 		}
-		//TODO iTween map around pivotPoint
+		var go = new GameObject("PivotPoint");
+		go.transform.position = new Vector3(pivotPointX,MapRoot.transform.position.y,MapRoot.transform.position.y);
+		MapRoot.transform.parent = go.transform;
+
+		iTween.RotateBy(go,new Vector3(0,180,0), time);
+		MapRoot.transform.parent = null;
+		Destroy(go);
 	}
 	public void IhitReverseAll(float pos)
 	{
-		ReverseAllPlayers(pos);
+		ReverseAllPlayers(pos, 0.5f);
 	}
 
 	public Player GetLeadingPlayer()
