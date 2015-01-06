@@ -7,7 +7,9 @@ public class ReverseDirection : MonoBehaviour {
 	float timer;
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		animation.Play("Punch");
+		if(animation != null)
+			animation.Play("Punch");
+			
 		playerCollider.GetComponent<Player>().SetTempReverseDurection(2f);
 		havePunched = true;
 	}
