@@ -8,8 +8,10 @@ public class InputImmunity : MonoBehaviour {
 		playerCollider.GetComponent<Player>().SetOtherInputImmunity(2f);
 		Despawn();
 	}
+	
 	void Despawn()
 	{
 		Destroy(gameObject);
 	}
 }
+	
