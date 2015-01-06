@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
 	private Player leadingPlayer;
 
+	public static int numberOfPlayers;
+
 	private List<Player> players;
 	private List<KeyCode> leftCodes;
 	private List<KeyCode> rightCodes;
@@ -35,7 +37,20 @@ public class GameManager : MonoBehaviour {
 	{
 
 	}
-
+	
+	void Start()
+	{
+		if(Application.loadedLevel == 1)
+		{
+			for(int i = 0; i <= numberOfPlayers; i++)
+			{
+				var player = Resources.Load("Prefabs/Player" + (i+1)) as GameObject;
+				Vector3 temp = new Vector3 (-4f + i*2f, 0.75f, 2.5f);
+				Instantiate(player, temp, Quaternion.identity);
+			}
+		}
+	}
+	
 	// Update is called once per frame
 	void Update ()
 	{
