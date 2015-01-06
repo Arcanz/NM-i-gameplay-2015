@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 	public float 
 		ForwardSpeed = 10f,
 		SidewayMoveAmount = 1f,
+		TurnSpeed = 0.1f,
 		immunityBlinkSpeed = .5f;
 
 	private Collider col;
@@ -145,7 +146,7 @@ public class Player : MonoBehaviour
 			tempReverseDirectionTimer += Time.deltaTime;
 			if (tempReverseDirectionTimer >= tempReverseDirectionDuration)
 			{
-				TurnPlayerAround();
+				TurnPlayerAround(TurnSpeed);
 				tempReverseDirectionTimer = -1;
 			}
 		}
@@ -249,7 +250,7 @@ public class Player : MonoBehaviour
 	{
 		tempReverseDirectionTimer = 0;
 		tempReverseDirectionDuration = time;
-		TurnPlayerAround();
+		TurnPlayerAround(TurnSpeed);
 	}
 
 	public void SetEnviromentalImmunity(float time)
@@ -287,7 +288,7 @@ public class Player : MonoBehaviour
 
 	public void SetReverseDirection()
 	{
-		TurnPlayerAround();
+		TurnPlayerAround(TurnSpeed);
 		controlDirection *= -1;
 	}
 
