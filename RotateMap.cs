@@ -15,7 +15,7 @@ public class RotateMap : MonoBehaviour {
 		htScale.Add("y", 180);
 		htScale.Add("easeType", iTween.EaseType.linear);
 		htScale.Add("time", 0.5);
-		htScale.Add("oncomplete", "destroyObject");
+	
 		
 		iTween.RotateTo(gameObject, htScale);
 	}

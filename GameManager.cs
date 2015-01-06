@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject MapRoot;
 
-	private Player leadingPlayer;
 
 	public static int numberOfPlayers;
 
@@ -35,14 +34,12 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
 	{
-
-	}
-	
-	void Start()
-	{
 		if(Application.loadedLevel == 1)
 		{
-			for(int i = 0; i <= numberOfPlayers; i++)
+			if(numberOfPlayers < 2)
+				numberOfPlayers = 2;
+			
+			for(int i = 0; i < numberOfPlayers; i++)
 			{
 				var player = Resources.Load("Prefabs/Player" + (i+1)) as GameObject;
 				Vector3 temp = new Vector3 (-4f + i*2f, 0.75f, 2.5f);
@@ -51,26 +48,37 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 	
+	void Start()
+	{
+		
+	}
+	
 	// Update is called once per frame
 	void Update ()
 	{
+		
+	}
+	Player FindLeadingPlayer()
+	{
+		Player leadingPlayer = null;
 		foreach (var player in Players)
 		{
 			if (leadingPlayer == null)
 				leadingPlayer = player;
 			if (direction>0)
 			{
-				if (leadingPlayer.transform.position.x < player.transform.position.x)
+				if (leadingPlayer.transform.position.z < player.transform.position.z)
 					leadingPlayer = player;
 			}
 			else
 			{
-				if (leadingPlayer.transform.position.x > player.transform.position.x)
+				if (leadingPlayer.transform.position.z > player.transform.position.z)
 					leadingPlayer = player;
 			}
 		}
+		return leadingPlayer;
 	}
-
+	
 	private void ReverseAllPlayers(float pivotPointX, float time)
 	{
 		direction *= -1;
@@ -94,7 +102,7 @@ public class GameManager : MonoBehaviour {
 
 	public Player GetLeadingPlayer()
 	{
-		return leadingPlayer;
+		return FindLeadingPlayer();
 	}
 
 

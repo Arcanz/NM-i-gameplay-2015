@@ -73,7 +73,10 @@ public class Player : MonoBehaviour
 
 	void Start()
 	{
-		if (gameManager == null) return;
+		if (gameManager == null)
+		{
+			gameManager = FindObjectOfType<GameManager>(); 
+		}
 		rend = gameObject.renderer;
 		col = gameObject.collider;
 
