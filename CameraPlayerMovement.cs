@@ -5,7 +5,7 @@ public class CameraPlayerMovement : MonoBehaviour
 {
     public float MyTime;
 	private GameManager gameManager;
-	public GameObject camera;
+	//public GameObject camera;
 	
 	void Start()
 	{

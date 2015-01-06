@@ -209,6 +209,9 @@ public class Player : MonoBehaviour
 	private void horizontalMove(float amount, int direction)
 	{
 		var tmp = transform.position;
+		if(tmp.x + amount*direction < -5.5f || tmp.x + amount*direction > 4.3f)
+			return;
+			
 		transform.position = new Vector3(tmp.x + (amount*direction), tmp.y, tmp.z);
 	}
 
