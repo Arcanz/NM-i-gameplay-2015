@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -112,7 +113,7 @@ public class Player : MonoBehaviour
 			if (enviromentImmunityTimer >= enviromentImmunityDuration)
 			{
 				enviromentImmunity = false;
-				col.enabled = true;
+				col.enabled  = true;
 				rend.enabled = true;
 				enviromentImmunityTimer = -1;
 			}
@@ -210,9 +211,13 @@ public class Player : MonoBehaviour
 
 	private void TurnPlayerAround(float time)
 	{
-		//TODO: itween the fuckers
-		iTween.RotateBy(gameObject,new Vector3(0,180,0),time);
 		moveDirection *= -1;
+		//TODO: itween the fuckers
+		var ht = new Hashtable {{"y", .5}, {"time", time}};
+		if(moveDirection<0)
+			iTween.RotateBy(gameObject,ht);
+		iTween.RotateBy(gameObject, ht);
+		
 	}
 
 	public void SetNoPersonalInput(float time)

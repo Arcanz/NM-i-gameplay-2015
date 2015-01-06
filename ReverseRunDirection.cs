@@ -7,7 +7,7 @@ public class ReverseRunDirection : MonoBehaviour {
 
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		playerCollider.GetComponent<Player>().SetReverseAll();
+		playerCollider.GetComponent<Player>().SetReverseAll(gameObject.transform.position);
 		map.GetComponent<RotateMap>().RotateMapDirection();
 		Despawn();
 	}

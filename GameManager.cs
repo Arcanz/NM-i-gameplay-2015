@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngineInternal;
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour {
 
 	public List<KeyCode> LeftKeyCodes
 	{
-		get { return leftCodes ?? (leftCodes = players.Select(player => player.leftKeyCode).ToList()); }
+		get { return leftCodes ?? (leftCodes = Players.Select(player => player.leftKeyCode).ToList()); }
 	}
 
 	public List<KeyCode> RightKeyCodes
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		foreach (var player in players)
+		foreach (var player in Players)
 		{
 			if (leadingPlayer == null)
 				leadingPlayer = player;
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour {
 	private void ReverseAllPlayers(float pivotPointX, float time)
 	{
 		direction *= -1;
-		foreach (var player in players)
+		foreach (var player in Players)
 		{
 			player.SetReverseDirection();
 		}
@@ -66,7 +67,8 @@ public class GameManager : MonoBehaviour {
 		go.transform.position = new Vector3(pivotPointX,MapRoot.transform.position.y,MapRoot.transform.position.y);
 		MapRoot.transform.parent = go.transform;
 
-		iTween.RotateBy(go,new Vector3(0,180,0), time);
+		var ht = new Hashtable {{"y", .5}, {"time", time}};
+		iTween.RotateBy(go,ht);
 		MapRoot.transform.parent = null;
 		Destroy(go);
 	}
