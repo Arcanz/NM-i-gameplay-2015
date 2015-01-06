@@ -237,6 +237,7 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(tmp.x + (amount*direction), tmp.y, tmp.z);
 	}
 
+
 	private void TurnPlayerAround(float time)
 	{
 		moveDirection *= -1;
@@ -245,21 +246,24 @@ public class Player : MonoBehaviour
 		if(moveDirection<0)
 			iTween.RotateBy(gameObject,ht);
 		iTween.RotateBy(gameObject, ht);
+		hurdleScore = gameManager.HurdleHitScore;
 		
 	}
 
+	#region Enviroment/Powerup effects
 	public void SetNoPersonalInput(float time)
 	{
 		noPersonalInputTimer = 0;
 		noPersonalInputDuration = time;
 		personalInput = false;
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 	public void SetSlow(float time)
 	{
 		speedModifierTimer = 0;
 		ForwardSpeed = SlowSpeed;
 		speedModifierDuration = time;
-		Debug.Log("Hitslow");
+		hurdleScore = gameManager.HurdleHitScore;
 	}
 
 	public void SetRoot(float time)
@@ -270,6 +274,7 @@ public class Player : MonoBehaviour
 		//Ignore input from others
 		SetNoPersonalInput(time);
 		SetOtherInputImmunity(time);
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetOtherInputImmunity(float time)
@@ -277,6 +282,7 @@ public class Player : MonoBehaviour
 		inputModifierTimer = 0;
 		inputModifierDuration = time;
 		affectedByOthers = false;
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetTempReverseDurection(float time)
@@ -284,6 +290,7 @@ public class Player : MonoBehaviour
 		tempReverseDirectionTimer = 0;
 		tempReverseDirectionDuration = time;
 		TurnPlayerAround(TurnSpeed);
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetEnviromentalImmunity(float time)
@@ -298,6 +305,7 @@ public class Player : MonoBehaviour
 		enviromentImmunityTimer = 0;
 		enviromentImmunityDuration = time;
 		col.enabled = false;
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetReversePersonalInput(float time)
@@ -317,12 +325,14 @@ public class Player : MonoBehaviour
 	public void SetReverseAll(Vector3 powerupPos)
 	{
 		gameManager.IhitReverseAll(powerupPos.x);
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetReverseDirection()
 	{
 		TurnPlayerAround(TurnSpeed);
 		controlDirection *= -1;
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetBoost(float time)
@@ -330,6 +340,7 @@ public class Player : MonoBehaviour
 		speedModifierTimer = 0;
 		ForwardSpeed = BoostSpeed;
 		speedModifierDuration = time;
-		Debug.Log("HitBoost");
+		hurdleScore += gameManager.HurdleHitScore;
 	}
+	#endregion
 }

@@ -9,18 +9,20 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject MapRoot;
 
-
+	public int HurdleHitScore;
 	public static int numberOfPlayers;
 
 	private List<Player> players;
 	private List<KeyCode> leftCodes;
 	private List<KeyCode> rightCodes;
-	private int 
+
+	private int
 		direction = 1;
-	private float distance;
+
+	public float distance;
 
 	[HideInInspector]
-	public int Direction { get { return direction} }
+	public int Direction { get { return direction; } }
 	public List<Player> Players
 	{
 		//NOTE: Gets new players once, then stores it
@@ -109,7 +111,4 @@ public class GameManager : MonoBehaviour {
 	{
 		return FindLeadingPlayer();
 	}
-
-
-	
 }
