@@ -91,122 +91,128 @@ public class Player : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update ()
-	{
-		#region "Powerup" timers
-		//No personal input duration
-		if (noPersonalInputTimer >= 0)
-		{
-			noPersonalInputTimer += Time.deltaTime;
-			if (noPersonalInputTimer >= noPersonalInputDuration)
-			{
-				personalInput = true;
-				noPersonalInputTimer = -1;
-			}
-		}
-		//Reverse control duration
-		if (reverseControlTimer >= 0)
-		{
-			reverseControlTimer += Time.deltaTime;
-			if (reverseControlTimer >= reverseControlDuration)
-			{
-				controlDirection *= -1;
-				reverseControlTimer = -1;
-			}
-		}
+    private void Update()
+    {
+        if (gameManager.GameStarted)
+        {
+            #region "Powerup" timers
 
-		//Enviroment immunity duration
-		if (enviromentImmunityTimer >= 0)
-		{
-			enviromentImmunityTimer += Time.deltaTime;
-			if (enviromentImmunityTimer >= enviromentImmunityDuration)
-			{
-				enviromentImmunity = false;
-				col.enabled  = true;
-				Rend.enabled = true;
-				enviromentImmunityTimer = -1;
-			}
-		}
+            //No personal input duration
+            if (noPersonalInputTimer >= 0)
+            {
+                noPersonalInputTimer += Time.deltaTime;
+                if (noPersonalInputTimer >= noPersonalInputDuration)
+                {
+                    personalInput = true;
+                    noPersonalInputTimer = -1;
+                }
+            }
+            //Reverse control duration
+            if (reverseControlTimer >= 0)
+            {
+                reverseControlTimer += Time.deltaTime;
+                if (reverseControlTimer >= reverseControlDuration)
+                {
+                    controlDirection *= -1;
+                    reverseControlTimer = -1;
+                }
+            }
 
-		//Other player input immunity duration
-		if (inputModifierTimer >= 0)
-		{
-			inputModifierTimer += Time.deltaTime;
-			if (inputModifierTimer >= inputModifierDuration)
-			{
-				affectedByOthers = true;
-				inputModifierTimer = -1;
-			}
-		}
+            //Enviroment immunity duration
+            if (enviromentImmunityTimer >= 0)
+            {
+                enviromentImmunityTimer += Time.deltaTime;
+                if (enviromentImmunityTimer >= enviromentImmunityDuration)
+                {
+                    enviromentImmunity = false;
+                    col.enabled = true;
+                    Rend.enabled = true;
+                    enviromentImmunityTimer = -1;
+                }
+            }
 
-		//Speed modified duration
-		if (speedModifierTimer >= 0)
-		{
-			speedModifierTimer += Time.deltaTime;
-			if (speedModifierTimer >= speedModifierDuration)
-			{
-				ForwardSpeed = DefaultSpeed;
-				speedModifierTimer = -1;
-			}
-		}
+            //Other player input immunity duration
+            if (inputModifierTimer >= 0)
+            {
+                inputModifierTimer += Time.deltaTime;
+                if (inputModifierTimer >= inputModifierDuration)
+                {
+                    affectedByOthers = true;
+                    inputModifierTimer = -1;
+                }
+            }
 
-		//Reverse direction duration
-		if (tempReverseDirectionTimer >= 0)
-		{
-			tempReverseDirectionTimer += Time.deltaTime;
-			if (tempReverseDirectionTimer >= tempReverseDirectionDuration)
-			{
-				TurnPlayerAround(TurnSpeed);
-				tempReverseDirectionTimer = -1;
-			}
+            //Speed modified duration
+            if (speedModifierTimer >= 0)
+            {
+                speedModifierTimer += Time.deltaTime;
+                if (speedModifierTimer >= speedModifierDuration)
+                {
+                    ForwardSpeed = DefaultSpeed;
+                    speedModifierTimer = -1;
+                }
+            }
+
+            //Reverse direction duration
+            if (tempReverseDirectionTimer >= 0)
+            {
+                tempReverseDirectionTimer += Time.deltaTime;
+                if (tempReverseDirectionTimer >= tempReverseDirectionDuration)
+                {
+                    TurnPlayerAround(TurnSpeed);
+                    tempReverseDirectionTimer = -1;
+                }
+            }
+
+            #endregion
+
+            if (enviromentImmunity)
+            {
+                if (Time.time - blinkTimer > ImmunityBlinkSpeed)
+                {
+                    Rend.enabled = !Rend.enabled;
+                    blinkTimer = Time.time;
+                }
+            }
+
+            if (affectedByOthers)
+                handleOtherPlayersInputMovement();
+
+            if (personalInput)
+            {
+                //Moving right?
+                if (Input.GetKeyDown(rightKeyCode))
+                    horizontalMove(SidewayMoveAmount, controlDirection);
+
+                //Moving left?
+                if (Input.GetKeyDown(leftKeyCode))
+                    horizontalMove(-SidewayMoveAmount, controlDirection);
+            }
+            var pos = (int) transform.position.z;
+            if (gameManager.Direction > 0)
+            {
+                if (pos > PreviousZpos)
+                {
+                    distanceScore++;
+                    PreviousZpos = pos;
+                }
+            }
+            else
+            {
+                if (pos < PreviousZpos)
+                {
+                    distanceScore++;
+                    PreviousZpos = pos;
+                }
+            }
+
+            PreviousZpos = transform.position.z;
+            moveForward(Time.deltaTime);
+
         }
-        #endregion
+    }
 
-		if (enviromentImmunity)
-		{
-			if (Time.time - blinkTimer > ImmunityBlinkSpeed)
-			{
-				Rend.enabled = !Rend.enabled;
-				blinkTimer = Time.time;
-			}
-		}
-
-		if (affectedByOthers)
-			handleOtherPlayersInputMovement();
-
-		if (personalInput)
-		{
-			//Moving right?
-			if (Input.GetKeyDown(rightKeyCode))
-				horizontalMove(SidewayMoveAmount, controlDirection);
-
-			//Moving left?
-			if (Input.GetKeyDown(leftKeyCode))
-				horizontalMove(-SidewayMoveAmount, controlDirection);
-		}
-		var pos = (int) transform.position.z;
-		if (gameManager.Direction > 0)
-		{
-			if (pos > PreviousZpos)
-			{
-				distanceScore++;
-				PreviousZpos = pos;
-			}
-		}
-		else {
-			if (pos < PreviousZpos)
-			{
-				distanceScore++;
-				PreviousZpos = pos;
-			}
-		}
-
-		PreviousZpos = transform.position.z;
-		moveForward(Time.deltaTime);
-
-	}
-
-	private void handleOtherPlayersInputMovement()
+    private void handleOtherPlayersInputMovement()
 	{
 		//Others pushing left?
 		if (OLKeyCodes.Where(keycode => keycode != leftKeyCode).Where(Input.GetKeyDown).Any())

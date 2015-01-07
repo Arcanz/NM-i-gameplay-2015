@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject MapRoot;
 	public static int NumberOfPlayers;
 	public int HurdleHitScore;
+    public bool GameStarted;
 
     public int NumberOfDeadPlayers
     {
@@ -135,18 +136,21 @@ public class GameManager : MonoBehaviour {
 		return FindLeadingPlayer();
 	}
 
-    void Update()
+    private void Update()
     {
-        foreach (var player in AlivePlayers)
+        if (GameStarted)
         {
-            var viewPos = FindObjectOfType<Camera>().camera.WorldToViewportPoint(player.transform.position);
-            if (viewPos.x < 0 || viewPos.x > 1)
-                KillPlayer(player);
-        }
+            foreach (var player in AlivePlayers)
+            {
+                var viewPos = FindObjectOfType<Camera>().camera.WorldToViewportPoint(player.transform.position);
+                if (viewPos.x < 0 || viewPos.x > 1)
+                    KillPlayer(player);
+            }
 
         if (NumberOfAlivePlayers <= 1)
             RespawnPlayers();
     }
+}
 
     private void RespawnPlayers()
     {

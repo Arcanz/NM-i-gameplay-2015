@@ -973,8 +973,8 @@ MonoBehaviour:
   alive: 0
   OLKeyCodes: 
   ORKeyCodes: 
-  leftKeyCode: 97
-  rightKeyCode: 100
+  leftKeyCode: 119
+  rightKeyCode: 115
 --- !u!137 &13724938
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
