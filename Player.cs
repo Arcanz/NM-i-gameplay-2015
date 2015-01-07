@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
 
 	public GameManager gameManager;
 
-
 	public  float BoostSpeed = 15f, DefaultSpeed = 10f, SlowSpeed = 5f;
 	public float 
 		ForwardSpeed = 10f,
@@ -18,8 +17,9 @@ public class Player : MonoBehaviour
 		immunityBlinkSpeed = .5f;
 
     public int ID;
+    public SkinnedMeshRenderer Rend;
+    public bool alive;
 	private Collider col;
-    private SkinnedMeshRenderer rend;
 
 	#region Timers and duration
 
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
 		{
 			gameManager = FindObjectOfType<GameManager>(); 
 		}
-        rend = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        Rend = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
 		col = gameObject.collider;
 
 		OLKeyCodes = gameManager.LeftKeyCodes;
@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
 			{
 				enviromentImmunity = false;
 				col.enabled  = true;
-				rend.enabled = true;
+				Rend.enabled = true;
 				enviromentImmunityTimer = -1;
 			}
 		}
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
 		{
 			if (Time.time - blinkTimer > immunityBlinkSpeed)
 			{
-				rend.enabled = !rend.enabled;
+				Rend.enabled = !Rend.enabled;
 				blinkTimer = Time.time;
 			}
 		}
@@ -217,8 +217,6 @@ public class Player : MonoBehaviour
 		moveDirection *= -1;
 		//TODO: itween the fuckers
 		var ht = new Hashtable {{"y", .5}, {"time", time}};
-		if(moveDirection<0)
-			iTween.RotateBy(gameObject,ht);
 		iTween.RotateBy(gameObject, ht);
 	}
 
@@ -262,7 +260,7 @@ public class Player : MonoBehaviour
 
 	public void SetEnviromentalImmunity(float time)
 	{
-		if (col.enabled == false || rend.enabled == false)
+		if (col.enabled == false || Rend.enabled == false)
 		{
 			Debug.LogError("Renderer or collider not enabled");
 			return;
@@ -309,6 +307,6 @@ public class Player : MonoBehaviour
 
     public void SetDead()
     {
-        gameManager.KillPlayer(ID);
+        gameManager.KillPlayer(this);
     }
 }
