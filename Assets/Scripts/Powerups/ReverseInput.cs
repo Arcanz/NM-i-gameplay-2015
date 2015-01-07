@@ -7,4 +7,8 @@ public class ReverseInput : IPickupable
 		playerCollider.GetComponent<Player>().SetReversePersonalInput(2f);
 		Despawn();
 	}
+	void Update()
+	{
+		gameObject.transform.Rotate(0,2,0);
+	}
 }
