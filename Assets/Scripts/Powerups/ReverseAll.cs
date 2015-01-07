@@ -7,4 +7,8 @@ public class ReverseAll : IPickupable
         playerCollider.GetComponent<Player>().SetReverseAll(gameObject.transform.position);
 	    Despawn();
 	}
+	void Update()
+	{
+		gameObject.transform.Rotate(0,0,2);
+	}
 }

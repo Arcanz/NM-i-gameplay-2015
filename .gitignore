@@ -12,6 +12,7 @@
 *.sln
 *.suo
 *.user
+*.dll
 *.userprefs
 *.pidb
 *.booproj

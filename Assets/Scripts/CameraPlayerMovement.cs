@@ -2,7 +2,7 @@
 
 public class CameraPlayerMovement : MonoBehaviour
 {
-    public float MyTime;
+    public float MyTime, cameraOfset;
 	private GameManager gameManager;
 	
 	void Start()
@@ -14,6 +14,6 @@ public class CameraPlayerMovement : MonoBehaviour
 	void Update ()
 	{    
 		var player = gameManager.GetLeadingPlayer();
-		gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, player.transform.position.z);
+		gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, player.transform.position.z-cameraOfset);
 	}
 }
