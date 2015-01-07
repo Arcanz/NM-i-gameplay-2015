@@ -961,7 +961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   BoostSpeed: 15
-  DefaultSpeed: 10
+  DefaultSpeed: 15
   SlowSpeed: 5
   ForwardSpeed: 10
   SidewayMoveAmount: .5
@@ -970,7 +970,7 @@ MonoBehaviour:
   PreviousZpos: 0
   ID: 0
   Rend: {fileID: 0}
-  alive: 0
+  alive: 1
   OLKeyCodes: 
   ORKeyCodes: 
   leftKeyCode: 97
