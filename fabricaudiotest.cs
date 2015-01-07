@@ -3,7 +3,7 @@ using System.Collections;
 
 public class fabricaudiotest : MonoBehaviour
 {
-
+    /*
 	private bool FabricLoaded = false;
 	// Use this for initialization
 	void Start () {
@@ -45,5 +45,5 @@ public class fabricaudiotest : MonoBehaviour
 	void LoadFabric()
 	{
 		Application.LoadLevelAdditive("Audio");
-	}
+	}*/
 }

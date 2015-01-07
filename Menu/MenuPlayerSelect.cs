@@ -4,7 +4,7 @@ public class MenuPlayerSelect : MonoBehaviour
 {
     public void SetNumberOfPlayers(int numberOfPlayers)
     {
-		GameManager.numberOfPlayers = numberOfPlayers;
+		GameManager.NumberOfPlayers = numberOfPlayers;
 		Application.LoadLevel(1);
     }
 

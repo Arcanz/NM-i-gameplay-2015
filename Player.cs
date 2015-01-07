@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
 	public GameManager gameManager;
-
 
 	public  float BoostSpeed = 15f, DefaultSpeed = 10f, SlowSpeed = 5f;
 	public float 
 		ForwardSpeed = 10f,
 		SidewayMoveAmount = 1f,
 		TurnSpeed = 0.1f,
-		immunityBlinkSpeed = .5f,
-		previousZpos;
+		ImmunityBlinkSpeed = .5f,
+		PreviousZpos;
 
 	[HideInInspector]
 	public int Score { get { return hurdleScore + distanceScore; } }
 
-	private int distanceScore,
-		hurdleScore;
+    private int distanceScore,
+        hurdleScore;
+
+    public int ID;
+    public SkinnedMeshRenderer Rend;
+    public bool alive;
 	private Collider col;
-	private Renderer rend;
 
 	#region Timers and duration
 
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 		{
 			gameManager = FindObjectOfType<GameManager>(); 
 		}
-		rend = gameObject.renderer;
+        Rend = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
 		col = gameObject.collider;
 
 		OLKeyCodes = gameManager.LeftKeyCodes;
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
 			{
 				enviromentImmunity = false;
 				col.enabled  = true;
-				rend.enabled = true;
+				Rend.enabled = true;
 				enviromentImmunityTimer = -1;
 			}
 		}
@@ -159,18 +159,17 @@ public class Player : MonoBehaviour
 				TurnPlayerAround(TurnSpeed);
 				tempReverseDirectionTimer = -1;
 			}
-		}
+        }
+        #endregion
 
 		if (enviromentImmunity)
 		{
-			if (Time.time - blinkTimer > immunityBlinkSpeed)
+			if (Time.time - blinkTimer > ImmunityBlinkSpeed)
 			{
-				rend.enabled = !rend.enabled;
+				Rend.enabled = !Rend.enabled;
 				blinkTimer = Time.time;
 			}
-
 		}
-		#endregion
 
 		if (affectedByOthers)
 			handleOtherPlayersInputMovement();
@@ -188,21 +187,21 @@ public class Player : MonoBehaviour
 		var pos = (int) transform.position.z;
 		if (gameManager.Direction > 0)
 		{
-			if (pos > previousZpos)
+			if (pos > PreviousZpos)
 			{
 				distanceScore++;
-				previousZpos = pos;
+				PreviousZpos = pos;
 			}
 		}
 		else {
-			if (pos < previousZpos)
+			if (pos < PreviousZpos)
 			{
 				distanceScore++;
-				previousZpos = pos;
+				PreviousZpos = pos;
 			}
 		}
 
-		previousZpos = transform.position.z;
+		PreviousZpos = transform.position.z;
 		moveForward(Time.deltaTime);
 
 	}
@@ -220,7 +219,6 @@ public class Player : MonoBehaviour
 		if (ORKeyCodes.Where(keyCode => keyCode != rightKeyCode).Where(Input.GetKeyDown).Any())
 		{
 			horizontalMove(-SidewayMoveAmount, controlDirection);
-			return;
 		}
 	}
 
@@ -237,17 +235,12 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(tmp.x + (amount*direction), tmp.y, tmp.z);
 	}
 
-
 	private void TurnPlayerAround(float time)
 	{
 		moveDirection *= -1;
-		//TODO: itween the fuckers
 		var ht = new Hashtable {{"y", .5}, {"time", time}};
-		if(moveDirection<0)
-			iTween.RotateBy(gameObject,ht);
-		iTween.RotateBy(gameObject, ht);
+        iTween.RotateBy(gameObject, ht);
 		hurdleScore = gameManager.HurdleHitScore;
-		
 	}
 
 	#region Enviroment/Powerup effects
@@ -295,7 +288,7 @@ public class Player : MonoBehaviour
 
 	public void SetEnviromentalImmunity(float time)
 	{
-		if (col.enabled == false || rend.enabled == false)
+		if (col.enabled == false || Rend.enabled == false)
 		{
 			Debug.LogError("Renderer or collider not enabled");
 			return;
@@ -324,7 +317,7 @@ public class Player : MonoBehaviour
 
 	public void SetReverseAll(Vector3 powerupPos)
 	{
-		gameManager.IhitReverseAll(powerupPos.x);
+		gameManager.IhitReverseAll(powerupPos.z);
 		hurdleScore += gameManager.HurdleHitScore;
 	}
 
@@ -342,5 +335,10 @@ public class Player : MonoBehaviour
 		speedModifierDuration = time;
 		hurdleScore += gameManager.HurdleHitScore;
 	}
-	#endregion
+
+    public void SetDead()
+    {
+        gameManager.KillPlayer(this);
+    }
+    #endregion
 }

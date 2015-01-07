@@ -1,28 +1,40 @@
-﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngineInternal;
 
 public class GameManager : MonoBehaviour {
 
 	public GameObject MapRoot;
-
+	public static int NumberOfPlayers;
 	public int HurdleHitScore;
-	public static int numberOfPlayers;
+
+    public int NumberOfDeadPlayers
+    {
+        get { return Players.Count(player => !player.alive); }
+    }
+    public int NumberOfAlivePlayers
+    {
+        get { return Players.Count(player => player.alive); }
+    }
+    public List<Player> AlivePlayers
+    {
+        get { return Players.Where(p => p.alive).ToList(); }
+    }
+
+    public float RespawnImunityTime = 1;
 
 	private List<Player> players;
 	private List<KeyCode> leftCodes;
 	private List<KeyCode> rightCodes;
-
-	private int
-		direction = 1;
-
 	public float distance;
 
 	[HideInInspector]
 	public int Direction { get { return direction; } }
+
+	private int direction = 1;
+    private bool turning;
+
 	public List<Player> Players
 	{
 		//NOTE: Gets new players once, then stores it
@@ -43,28 +55,23 @@ public class GameManager : MonoBehaviour {
 	{
 		if(Application.loadedLevel == 1)
 		{
-			if(numberOfPlayers < 2)
-				numberOfPlayers = 2;
+			if(NumberOfPlayers < 2)
+				NumberOfPlayers = 2;
 			
-			for(int i = 0; i < numberOfPlayers; i++)
+			for(var i = 0; i < NumberOfPlayers; i++)
 			{
-				var player = Resources.Load("Prefabs/Player" + (i+1)) as GameObject;
-				Vector3 temp = new Vector3 (-4f + i*2f, 0.75f, 2.5f);
-				Instantiate(player, temp, Quaternion.identity);
+				var player = Resources.Load("Prefabs/Player" + i) as GameObject;
+			    if (player != null)
+			    {
+			        player.GetComponent<Player>().ID = i;
+			        player.GetComponent<Player>().alive = true;
+			        var temp = new Vector3 (-4f + i*2f, 0.75f, 2.5f);
+                    Instantiate(player, temp, Quaternion.Euler(0, -90, 0));
+			    }
 			}
 		}
 	}
-	
-	void Start()
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
-	}
+
 	Player FindLeadingPlayer()
 	{
 		Player leadingPlayer = null;
@@ -72,6 +79,7 @@ public class GameManager : MonoBehaviour {
 		{
 			if (leadingPlayer == null)
 				leadingPlayer = player;
+
 			if (direction>0)
 			{
 				if (leadingPlayer.transform.position.z < player.transform.position.z)
@@ -86,23 +94,38 @@ public class GameManager : MonoBehaviour {
 		return leadingPlayer;
 	}
 	
-	private void ReverseAllPlayers(float pivotPointX, float time)
+	private void ReverseAllPlayers(float pivotPointZ, float time)
 	{
+        if(turning)
+            return;
+
+	    turning = true;
 		direction *= -1;
 		foreach (var player in Players)
 		{
-			player.SetReverseDirection();
-		}
-		var go = new GameObject("PivotPoint");
-		go.transform.position = new Vector3(pivotPointX,MapRoot.transform.position.y,MapRoot.transform.position.y);
+            player.SetReverseDirection();
+            player.SetRoot(time);
+            player.SetEnviromentalImmunity(time);
+        }
+        var go = new GameObject("PivotPoint");
+        go.transform.position = new Vector3(MapRoot.transform.position.x, MapRoot.transform.position.y, pivotPointZ);
+        
 		MapRoot.transform.parent = go.transform;
 
-		var ht = new Hashtable {{"y", .5}, {"time", time}};
-		iTween.RotateBy(go,ht);
-		MapRoot.transform.parent = null;
-		Destroy(go);
-	}
-	public void IhitReverseAll(float pos)
+		var ht = new Hashtable {
+        {"y", .5}, 
+        {"time", time},
+        {"oncomplete", "TweenFinished"}
+        };
+		iTween.RotateBy(go, ht);
+    }
+
+    public void TweenFinished()
+    {
+        turning = false;
+    }
+
+    public void IhitReverseAll(float pos)
 	{
 		ReverseAllPlayers(pos, 0.5f);
 	}
@@ -111,4 +134,52 @@ public class GameManager : MonoBehaviour {
 	{
 		return FindLeadingPlayer();
 	}
+
+    void Update()
+    {
+        foreach (var player in AlivePlayers)
+        {
+            var viewPos = FindObjectOfType<Camera>().camera.WorldToViewportPoint(player.transform.position);
+            if (viewPos.x < 0 || viewPos.x > 1)
+                KillPlayer(player);
+        }
+
+        if (NumberOfAlivePlayers <= 1)
+            RespawnPlayers();
+    }
+
+    private void RespawnPlayers()
+    {
+        foreach (var player in Players.Where(player => !player.alive))
+        {
+            var posZ = AlivePlayers.Count > 0 ? AlivePlayers.First().transform.position.z : FindObjectOfType<Camera>().camera.transform.position.z;
+            player.transform.position = new Vector3(-4 + (player.ID*2), 0.75f, posZ);
+            player.ForwardSpeed = player.DefaultSpeed;
+            player.alive = true;
+            player.SetEnviromentalImmunity(RespawnImunityTime);
+            player.SetOtherInputImmunity(RespawnImunityTime);
+            player.SetDirection(direction);
+        }
+    }
+
+    public void KillPlayer(Player player)
+    {
+        player.ForwardSpeed = 0;
+        player.SetOtherInputImmunity(2);
+        iTween.MoveBy(player.gameObject, new Vector3(0, 40, 0), 0.5f);
+        StartCoroutine(MovePlayer(player));
+        StartCoroutine(SetPlayerAsDead(player));
+    }
+
+    IEnumerator MovePlayer(Player player)
+    {
+        yield return new WaitForSeconds(.3f);
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + (100 * direction), player.transform.position.z);
+    }
+
+    IEnumerator SetPlayerAsDead(Player player)
+    {
+        yield return new WaitForSeconds(1.5f);
+        player.alive = false;
+    }
 }
