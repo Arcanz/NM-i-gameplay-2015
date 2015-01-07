@@ -13,7 +13,9 @@ public class Player : MonoBehaviour
 		SidewayMoveAmount = 1f,
 		TurnSpeed = 0.1f,
 		ImmunityBlinkSpeed = .5f,
-		PreviousZpos;
+		PreviousZpos,
+		LowBoundry =  -5.5f,
+		HighBoundry = 4.3f;
 
 	[HideInInspector]
 	public int Score { get { return hurdleScore + distanceScore; } }
@@ -176,6 +178,8 @@ public class Player : MonoBehaviour
 
 		if (personalInput)
 		{
+			if (Input.GetKeyDown(rightKeyCode) || Input.GetKeyDown(leftKeyCode))
+				StopSliding();
 			//Moving right?
 			if (Input.GetKeyDown(rightKeyCode))
 				horizontalMove(SidewayMoveAmount, controlDirection);
@@ -206,6 +210,28 @@ public class Player : MonoBehaviour
 
 	}
 
+	void FixedUpdate()
+	{
+		var p = transform.position;
+		if (transform.position.x > HighBoundry)
+		{
+			transform.position = new Vector3(HighBoundry, p.y, p.z);
+			StopSliding();
+		}
+		else if (transform.position.x < LowBoundry)
+		{
+			transform.position = new Vector3(LowBoundry, p.y, p.z);
+			StopSliding();
+		}
+
+	}
+
+	private void StopSliding()
+	{
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.angularVelocity = Vector3.zero;
+	}
+
 	private void handleOtherPlayersInputMovement()
 	{
 		//Others pushing left?
@@ -229,9 +255,8 @@ public class Player : MonoBehaviour
 	private void horizontalMove(float amount, int direction)
 	{
 		var tmp = transform.position;
-		if(tmp.x + amount*direction < -5.5f || tmp.x + amount*direction > 4.3f)
+		if(tmp.x + amount*direction < LowBoundry || tmp.x + amount*direction > HighBoundry)
 			return;
-			
 		transform.position = new Vector3(tmp.x + (amount*direction), tmp.y, tmp.z);
 	}
 
