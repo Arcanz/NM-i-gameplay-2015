@@ -242,14 +242,22 @@ public class Player : MonoBehaviour
 
 	public void SetRoot(float time)
 	{
+		StartCoroutine(StartAnimation("Walking", time));
+		animation.Play("Idle");
 		speedModifierTimer = 0;
 		ForwardSpeed = 0;
 		speedModifierDuration = time;
 		//Ignore input from others
 		SetNoPersonalInput(time);
 		SetOtherInputImmunity(time);
+		
 	}
-
+	public IEnumerator StartAnimation(string animationName, float time)
+	{
+		yield return new WaitForSeconds(time);
+		animation.Play(animationName);
+	}
+	
 	public void SetOtherInputImmunity(float time)
 	{
 		inputModifierTimer = 0;
@@ -305,9 +313,13 @@ public class Player : MonoBehaviour
 
 	public void SetBoost(float time)
 	{
+		animation.Play("Fall to slide");
+		StartCoroutine(StartAnimation("Slide", 0.5f));
+		StartCoroutine(StartAnimation("Rise for slide", 1f));
 		speedModifierTimer = 0;
 		ForwardSpeed = BoostSpeed;
 		speedModifierDuration = time;
 		Debug.Log("HitBoost");
+		StartCoroutine(StartAnimation("Walking", time));
 	}
 }
