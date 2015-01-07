@@ -10,6 +10,18 @@ public class GameManager : MonoBehaviour {
 	public static int NumberOfPlayers;
 	public int HurdleHitScore;
 
+	public float 
+		BoostSpeed = 15f, 
+		DefaultSpeed = 10f, 
+		SlowSpeed = 5f,
+		SidewayMoveAmount = 1f,
+		SidewayInfluenceAMount = 0.5f,
+		TurnSpeed = 0.1f,
+		ImmunityBlinkSpeed = .5f,
+		LowBoundry = -5.5f,
+		HighBoundry = 4.3f,
+		RespawnImunityTime = 1;
+
     public int NumberOfDeadPlayers
     {
         get { return Players.Count(player => !player.alive); }
@@ -23,12 +35,9 @@ public class GameManager : MonoBehaviour {
         get { return Players.Where(p => p.alive).ToList(); }
     }
 
-    public float RespawnImunityTime = 1;
-
 	private List<Player> players;
 	private List<KeyCode> leftCodes;
 	private List<KeyCode> rightCodes;
-	public float distance;
 
 	[HideInInspector]
 	public int Direction { get { return direction; } }
@@ -154,7 +163,7 @@ public class GameManager : MonoBehaviour {
         {
             var posZ = AlivePlayers.Count > 0 ? AlivePlayers.First().transform.position.z : FindObjectOfType<Camera>().camera.transform.position.z;
             player.transform.position = new Vector3(-4 + (player.ID*2), 0.75f, posZ);
-            player.ForwardSpeed = player.DefaultSpeed;
+            player.ForwardSpeed = DefaultSpeed;
             player.alive = true;
             player.SetEnviromentalImmunity(RespawnImunityTime);
             player.SetOtherInputImmunity(RespawnImunityTime);

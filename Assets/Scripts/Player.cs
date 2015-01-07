@@ -7,15 +7,12 @@ public class Player : MonoBehaviour
 {
 	public GameManager gameManager;
 
-	public  float BoostSpeed = 15f, DefaultSpeed = 10f, SlowSpeed = 5f;
-	public float 
+	
+	[HideInInspector]
+	public float
 		ForwardSpeed = 10f,
-		SidewayMoveAmount = 1f,
-		TurnSpeed = 0.1f,
-		ImmunityBlinkSpeed = .5f,
-		PreviousZpos,
-		LowBoundry =  -5.5f,
-		HighBoundry = 4.3f;
+		PreviousZpos;
+	
 
 	[HideInInspector]
 	public int Score { get { return hurdleScore + distanceScore; } }
@@ -144,10 +141,11 @@ public class Player : MonoBehaviour
 		//Speed modified duration
 		if (speedModifierTimer >= 0)
 		{
+			StopSliding();
 			speedModifierTimer += Time.deltaTime;
 			if (speedModifierTimer >= speedModifierDuration)
 			{
-				ForwardSpeed = DefaultSpeed;
+				ForwardSpeed = gameManager.DefaultSpeed;
 				speedModifierTimer = -1;
 			}
 		}
@@ -158,7 +156,7 @@ public class Player : MonoBehaviour
 			tempReverseDirectionTimer += Time.deltaTime;
 			if (tempReverseDirectionTimer >= tempReverseDirectionDuration)
 			{
-				TurnPlayerAround(TurnSpeed);
+				TurnPlayerAround(gameManager.TurnSpeed);
 				tempReverseDirectionTimer = -1;
 			}
         }
@@ -166,7 +164,7 @@ public class Player : MonoBehaviour
 
 		if (enviromentImmunity)
 		{
-			if (Time.time - blinkTimer > ImmunityBlinkSpeed)
+			if (Time.time - blinkTimer > gameManager.ImmunityBlinkSpeed)
 			{
 				Rend.enabled = !Rend.enabled;
 				blinkTimer = Time.time;
@@ -182,11 +180,11 @@ public class Player : MonoBehaviour
 				StopSliding();
 			//Moving right?
 			if (Input.GetKeyDown(rightKeyCode))
-				horizontalMove(SidewayMoveAmount, controlDirection);
+				horizontalMove(gameManager.SidewayMoveAmount, controlDirection);
 
 			//Moving left?
 			if (Input.GetKeyDown(leftKeyCode))
-				horizontalMove(-SidewayMoveAmount, controlDirection);
+				horizontalMove(-gameManager.SidewayMoveAmount, controlDirection);
 		}
 		var pos = (int) transform.position.z;
 		if (gameManager.Direction > 0)
@@ -213,14 +211,14 @@ public class Player : MonoBehaviour
 	void FixedUpdate()
 	{
 		var p = transform.position;
-		if (transform.position.x > HighBoundry)
+		if (transform.position.x > gameManager.HighBoundry)
 		{
-			transform.position = new Vector3(HighBoundry, p.y, p.z);
+			transform.position = new Vector3(gameManager.HighBoundry, p.y, p.z);
 			StopSliding();
 		}
-		else if (transform.position.x < LowBoundry)
+		else if (transform.position.x < gameManager.LowBoundry)
 		{
-			transform.position = new Vector3(LowBoundry, p.y, p.z);
+			transform.position = new Vector3(gameManager.LowBoundry, p.y, p.z);
 			StopSliding();
 		}
 
@@ -237,14 +235,14 @@ public class Player : MonoBehaviour
 		//Others pushing left?
 		if (OLKeyCodes.Where(keycode => keycode != leftKeyCode).Where(Input.GetKeyDown).Any())
 		{
-			horizontalMove(SidewayMoveAmount, controlDirection);
+			horizontalMove(gameManager.SidewayInfluenceAMount, controlDirection);
 			return;
 		}
 
 		//Others pushing right?
 		if (ORKeyCodes.Where(keyCode => keyCode != rightKeyCode).Where(Input.GetKeyDown).Any())
 		{
-			horizontalMove(-SidewayMoveAmount, controlDirection);
+			horizontalMove(-gameManager.SidewayInfluenceAMount, controlDirection);
 		}
 	}
 
@@ -255,7 +253,7 @@ public class Player : MonoBehaviour
 	private void horizontalMove(float amount, int direction)
 	{
 		var tmp = transform.position;
-		if(tmp.x + amount*direction < LowBoundry || tmp.x + amount*direction > HighBoundry)
+		if (tmp.x + amount * direction < gameManager.LowBoundry || tmp.x + amount * direction > gameManager.HighBoundry)
 			return;
 		transform.position = new Vector3(tmp.x + (amount*direction), tmp.y, tmp.z);
 	}
@@ -279,7 +277,7 @@ public class Player : MonoBehaviour
 	public void SetSlow(float time)
 	{
 		speedModifierTimer = 0;
-		ForwardSpeed = SlowSpeed;
+		ForwardSpeed = gameManager.SlowSpeed;
 		speedModifierDuration = time;
 		hurdleScore = gameManager.HurdleHitScore;
 	}
@@ -295,6 +293,7 @@ public class Player : MonoBehaviour
 		SetNoPersonalInput(time);
 		SetOtherInputImmunity(time);
 		hurdleScore += gameManager.HurdleHitScore;
+		StopSliding();
 	}
 	public IEnumerator StartAnimation(string animationName, float time)
 	{
@@ -314,18 +313,12 @@ public class Player : MonoBehaviour
 	{
 		tempReverseDirectionTimer = 0;
 		tempReverseDirectionDuration = time;
-		TurnPlayerAround(TurnSpeed);
+		TurnPlayerAround(gameManager.TurnSpeed);
 		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetEnviromentalImmunity(float time)
 	{
-		if (col.enabled == false || Rend.enabled == false)
-		{
-			Debug.LogError("Renderer or collider not enabled");
-			return;
-		}
-
 		enviromentImmunity = true;
 		enviromentImmunityTimer = 0;
 		enviromentImmunityDuration = time;
@@ -355,7 +348,7 @@ public class Player : MonoBehaviour
 
 	public void SetReverseDirection()
 	{
-		TurnPlayerAround(TurnSpeed);
+		TurnPlayerAround(gameManager.TurnSpeed);
 		controlDirection *= -1;
 		hurdleScore += gameManager.HurdleHitScore;
 	}
@@ -366,7 +359,7 @@ public class Player : MonoBehaviour
 		StartCoroutine(StartAnimation("Slide", 0.5f));
 		StartCoroutine(StartAnimation("Rise for slide", 1f));
 		speedModifierTimer = 0;
-		ForwardSpeed = BoostSpeed;
+		ForwardSpeed = gameManager.BoostSpeed;
 		speedModifierDuration = time;
 
 		hurdleScore += gameManager.HurdleHitScore;
