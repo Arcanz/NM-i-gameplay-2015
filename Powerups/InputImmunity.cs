@@ -8,3 +8,4 @@ public class InputImmunity : IPickupable
 		Despawn();
 	}
 }
+	
