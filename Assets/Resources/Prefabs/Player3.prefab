@@ -913,7 +913,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
@@ -963,11 +963,13 @@ MonoBehaviour:
   BoostSpeed: 15
   DefaultSpeed: 15
   SlowSpeed: 5
-  ForwardSpeed: 10
+  ForwardSpeed: 15
   SidewayMoveAmount: .5
   TurnSpeed: .100000001
   ImmunityBlinkSpeed: .5
   PreviousZpos: 0
+  LowBoundry: -5.5
+  HighBoundry: 4.30000019
   ID: 0
   Rend: {fileID: 0}
   alive: 0
