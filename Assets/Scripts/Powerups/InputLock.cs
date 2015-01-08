@@ -4,7 +4,7 @@ public class InputLock : IPickupable
 {
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		AudioManager.PlaySound("FlaskLock", gameObject);
+		AudioManager.PlaySound("FX/Powerups/Flask", gameObject);
 		playerCollider.GetComponent<Player>().SetNoPersonalInput(2f);
 		Despawn();
 	}
