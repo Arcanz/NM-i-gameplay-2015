@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ContinueScreen : MonoBehaviour
 {
     private GameManager manager;
+    public List<GameObject> HolderObject;
     public List<Text> PlayerNameText;
     public List<Text> PlayerKeysText;
     public float TimeToGameStart = 0.5f;
@@ -18,7 +19,7 @@ public class ContinueScreen : MonoBehaviour
             PlayerKeysText[i].text = manager.Players[i].leftKeyCode + " / " + manager.Players[i].rightKeyCode;
 
         for (var i = manager.Players.Count; i < 4; i++)
-            PlayerNameText[i].gameObject.SetActive(false);
+            HolderObject[i].gameObject.SetActive(false);
     }
 
     // Update is called once per frame

@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Fabric;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
 	public GameManager gameManager;
 
+    private GameObject objectOverHead;
+    private float overHeadPosition = 4;
 	
 	[HideInInspector]
 	public float
@@ -172,7 +175,7 @@ public class Player : MonoBehaviour
 	            if (Time.time - blinkTimer > gameManager.ImmunityBlinkSpeed)
 	            {
 	                Rend.enabled = !Rend.enabled;
-	                blinkTimer = Time.time;
+                    blinkTimer = Time.time;
 	            }
 	        }
 
@@ -269,7 +272,7 @@ public class Player : MonoBehaviour
 		moveDirection *= -1;
 		var ht = new Hashtable {{"y", .5}, {"time", time}};
         iTween.RotateBy(gameObject, ht);
-		hurdleScore = gameManager.HurdleHitScore;
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	#region Enviroment/Powerup effects
@@ -285,7 +288,7 @@ public class Player : MonoBehaviour
 		speedModifierTimer = 0;
 		ForwardSpeed = gameManager.SlowSpeed;
 		speedModifierDuration = time;
-		hurdleScore = gameManager.HurdleHitScore;
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetRoot(float time)
@@ -330,15 +333,34 @@ public class Player : MonoBehaviour
 		enviromentImmunityDuration = time;
 		col.enabled = false;
 		hurdleScore += gameManager.HurdleHitScore;
+        spawnObject("ShieldImmunityAll", time);
 	}
 
-	public void SetReversePersonalInput(float time)
+    private void spawnObject(string name, float time)
+    {
+        objectOverHead = Resources.Load("Prefabs/" + name) as GameObject;
+        if (objectOverHead != null)
+        {
+            var obj = Instantiate(objectOverHead, new Vector3(transform.position.x, transform.position.y + overHeadPosition, transform.position.z),
+                    Quaternion.Euler(0, -90, 0)) as GameObject;
+            obj.transform.parent = transform;
+            Destroy(obj, time);
+        }
+    }
+
+    public void SetReversePersonalInput(float time)
 	{
 		if (reverseControlTimer < 0)
 			controlDirection *= -1;
 		reverseControlDuration = time;
 		reverseControlTimer = 0;
+        spawnObject("ReverseControll", time);
 	}
+
+    public void SetReverseOthersInput(float time)
+    {
+        gameManager.IhitReverseOtherInput(time, ID);
+    }
 
 	public void SetDirection(int dir)
 	{
@@ -348,8 +370,11 @@ public class Player : MonoBehaviour
 
 	public void SetReverseAll(Vector3 powerupPos)
 	{
-		gameManager.IhitReverseAll(powerupPos.z);
-		hurdleScore += gameManager.HurdleHitScore;
+	    if (!gameManager.turning)
+	    {
+	        gameManager.IhitReverseAll(powerupPos.z);
+	        hurdleScore += gameManager.HurdleHitScore;
+	    }
 	}
 
 	public void SetReverseDirection()
@@ -372,7 +397,6 @@ public class Player : MonoBehaviour
 
 		Debug.Log("HitBoost");
 		StartCoroutine(StartAnimation("Walking", time));
-
 	}
 
     public void SetDead()

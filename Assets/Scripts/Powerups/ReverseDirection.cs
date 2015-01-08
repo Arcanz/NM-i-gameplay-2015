@@ -9,6 +9,9 @@ public class ReverseDirection : IPickupable
 
 	void OnTriggerEnter(Collider playerCollider)
 	{
+	    if (havePunched)
+	        return;
+
 		if(animation != null)
 			animation.Play("Punch");
 			

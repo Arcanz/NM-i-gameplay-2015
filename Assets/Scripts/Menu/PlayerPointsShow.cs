@@ -12,12 +12,14 @@ public class PlayerPointsShow : MonoBehaviour {
 	void Start () {
         manager = FindObjectOfType<GameManager>();
 
-        for (var i = manager.Players.Count; i < 4; i++)
+        for (var i = manager.Players.Count; i < PlayerHolder.Count; i++)
             PlayerHolder[i].gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (manager.GameStarted)
+
 	    for (var i = 0; i < manager.Players.Count; i++)
 	        PlayerScoreText[i].text = manager.Players[i].Score.ToString();
 	}
