@@ -6,6 +6,19 @@ public class SpeedIncrease : IPickupable
 	{
 		AudioManager.PlaySound("SpeedIncrease", gameObject);
 		playerCollider.GetComponent<Player>().SetBoost(2f);
-		Despawn();
+		Trigger();
+	}
+	void Update()
+	{
+		if (triggered)
+		{
+			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("SpeedIncrease");
+			if (comp != null)
+			{
+				if (comp.IsPlaying() == false)
+					Despawn();
+			}
+		}
+
 	}
 }

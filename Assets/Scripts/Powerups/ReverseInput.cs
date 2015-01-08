@@ -6,10 +6,20 @@ public class ReverseInput : IPickupable
 	{
 		AudioManager.PlaySound("ReverseInput", gameObject);
 		playerCollider.GetComponent<Player>().SetReversePersonalInput(2f);
-		Despawn();
+		Trigger();
 	}
 	void Update()
 	{
 		gameObject.transform.Rotate(0,2,0);
+		if (triggered)
+		{
+			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("ReverseInput");
+			if (comp != null)
+			{
+				if (comp.IsPlaying() == false)
+					Despawn();
+			}
+		}
+
 	}
 }

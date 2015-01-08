@@ -8,4 +8,17 @@ public class InputLock : IPickupable
 		playerCollider.GetComponent<Player>().SetNoPersonalInput(2f);
 		Despawn();
 	}
+	void Update()
+	{
+		if (triggered)
+		{
+			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("FX/Powerups/Flask");
+			if (comp != null)
+			{
+				if (comp.IsPlaying() == false)
+					Despawn();
+			}
+		}
+
+	}
 }
