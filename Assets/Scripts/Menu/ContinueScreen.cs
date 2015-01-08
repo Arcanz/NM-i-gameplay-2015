@@ -37,6 +37,7 @@ public class ContinueScreen : MonoBehaviour
 
 	    if (green == manager.Players.Count)
         {
+			AudioManager.PlaySound("StartRace");
             StartCoroutine(StartGame());
 	    }
 	    green = 0;
@@ -47,6 +48,7 @@ public class ContinueScreen : MonoBehaviour
         yield return new WaitForSeconds(TimeToGameStart);
         manager.GameStarted = true;
         gameObject.SetActive(false);
+		AudioManager.PlaySound("RaceMusic");
     }
 
 }

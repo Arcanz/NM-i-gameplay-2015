@@ -1,51 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AudioManager : MonoBehaviour {
+public static class AudioManager
+{
 
-	bool isFabricLoaded = false;
-
-	public void Start()
+	public static float 
+		PenguinSquackInterval = 1f,
+		PenguinSquackChance = 1f, // 0-1 = 0-100% chance
+		PengquinStepInterval = 0.3f; 
+	private static void playAudio(string eventName)
 	{
-		// load the AudioManager
-		// this probably should be someplace else!
-		if (!Fabric.EventManager.Instance)
-		{
-			LoadFabric();
-		}
-		else
-			Debug.Log("Fabric already loaded");
+		Debug.Log("Triggered sound:" + eventName);
+
+		//AUDIO: without position
+	}
+	private static void playAudioWithPosition(string eventName, Vector3 position)
+	{
+		Debug.Log("Triggered sound:" + eventName);
+		Debug.Log("At position:" + position);
+		
+		//AUDIO: with position
 	}
 
-	void Update()
+	public static bool FabricLoaded {get { return Fabric.EventManager.Instance; }}
+
+
+	public static void PlaySound(string n)
 	{
-		// this probably can be implemented better with a CoRoutine and yield, but I couldn't figure out how! -- Jory
-		// has Fabric finished loading?
-		if (!isFabricLoaded)
-		{
-			if (Application.isLoadingLevel)
-			{
-				Debug.Log("Level is still loading, so wait on trying to play the music!");
-			}
-			else
-			{
-				// has Fabric been loaded?
-				if (Fabric.EventManager.Instance)
-				{
-					isFabricLoaded = true;
-					Debug.Log("Fabric loaded");
-					// then start playing the menu music!
-					//Fabric.EventManager.Instance.PostEvent("MX_Menu_lp", gameObject);
-				}
-				else
-				{
-					Debug.Log("Fabric hasn't loaded yet!");
-				}
-			}
-		}
+		LoadFabric();
+		if (FabricLoaded)
+			playAudio(n);
 	}
-	void LoadFabric()
+
+	public static void PlaySound(string n, Vector3 p)
 	{
+		LoadFabric();
+		if (FabricLoaded)
+			playAudioWithPosition(n, p);
+	}
+
+
+	public static void LoadFabric()
+	{
+		if (FabricLoaded)
+			return;
 		Application.LoadLevelAdditive("Audio");
 	}
 }

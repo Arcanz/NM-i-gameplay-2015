@@ -4,6 +4,7 @@ public class ReverseInput : IPickupable
 {
 	void OnTriggerEnter(Collider playerCollider)
 	{
+		AudioManager.PlaySound("ReverseInput", transform.position);
 		playerCollider.GetComponent<Player>().SetReversePersonalInput(2f);
 		Despawn();
 	}

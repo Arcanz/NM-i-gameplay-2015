@@ -9,6 +9,7 @@ public class ReverseDirection : IPickupable
 
 	void OnTriggerEnter(Collider playerCollider)
 	{
+		AudioManager.PlaySound("Punch", transform.position);
 		if(animation != null)
 			animation.Play("Punch");
 			

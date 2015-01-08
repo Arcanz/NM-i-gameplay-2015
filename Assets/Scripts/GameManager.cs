@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
 	{
+		AudioManager.LoadFabric();
 		if(Application.loadedLevel == 1)
 		{
 			if(NumberOfPlayers < 2)

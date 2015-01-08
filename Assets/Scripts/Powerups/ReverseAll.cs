@@ -4,6 +4,7 @@ public class ReverseAll : IPickupable
 {
 	void OnTriggerEnter(Collider playerCollider)
 	{
+		AudioManager.PlaySound("ReverseMap", transform.position);
         playerCollider.GetComponent<Player>().SetReverseAll(gameObject.transform.position);
 	    Despawn();
 	}

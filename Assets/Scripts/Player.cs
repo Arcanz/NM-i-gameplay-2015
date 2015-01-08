@@ -93,6 +93,16 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Time.time%AudioManager.PenguinSquackInterval <= 0.1f)
+		{
+			if(Random.Range(0f, 1f)>AudioManager.PenguinSquackChance)
+				AudioManager.PlaySound("PenguinSquack", transform.position);
+		}
+		if (Time.time%AudioManager.PengquinStepInterval <= 0.1f)
+		{
+			AudioManager.PlaySound("PenguinStep");
+		}
+
 	    if (gameManager.GameStarted)
 	    {
 	        #region "Powerup" timers
@@ -196,6 +206,7 @@ public class Player : MonoBehaviour
 	        {
 	            if (pos > PreviousZpos)
 	            {
+					AudioManager.PlaySound("ScoreIncrease");
 	                distanceScore++;
 	                PreviousZpos = pos;
 	            }
@@ -204,6 +215,7 @@ public class Player : MonoBehaviour
 	        {
 	            if (pos < PreviousZpos)
 	            {
+					AudioManager.PlaySound("ScoreIncrease");
 	                distanceScore++;
 	                PreviousZpos = pos;
 	            }

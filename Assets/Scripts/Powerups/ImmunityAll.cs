@@ -4,6 +4,7 @@ public class ImmunityAll : IPickupable
 {
 	void OnTriggerEnter(Collider playerCollider)
 	{
+		AudioManager.PlaySound("GodModeSheild", transform.position);
 		playerCollider.GetComponent<Player>().SetEnviromentalImmunity(2f);
 		Despawn();
 	}

@@ -4,6 +4,7 @@ public class InputImmunity : IPickupable
 {
 	void OnTriggerEnter(Collider playerCollider)
 	{
+		AudioManager.PlaySound("InputSheild", transform.position);
 		playerCollider.GetComponent<Player>().SetOtherInputImmunity(2f);
 		Despawn();
 	}
