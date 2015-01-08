@@ -65,20 +65,21 @@ public class GameManager : MonoBehaviour {
 	void Awake()
 	{
 		AudioManager.LoadFabric();
-		if(Application.loadedLevel == 1)
+		if (Application.loadedLevel == 1)
 		{
-			if(NumberOfPlayers < 2)
+			if (NumberOfPlayers < 2)
 				NumberOfPlayers = 2;
-			for(var i = 0; i < NumberOfPlayers; i++)
+			for (var i = 0; i < NumberOfPlayers; i++)
 			{
 				var player = Resources.Load("Prefabs/Player" + i) as GameObject;
-			    if (player != null)
-			    {
-			        player.GetComponent<Player>().ID = i;
-			        player.GetComponent<Player>().alive = true;
-			        var temp = new Vector3 (-4f + i*5f, 0.75f, 2.5f);
-                    Instantiate(player, temp, Quaternion.Euler(0, -90, 0));
-			    }
+				if (player != null)
+				{
+					player.GetComponent<Player>().ID = i;
+					player.GetComponent<Player>().alive = true;
+					var temp = new Vector3(-4f + i*5f, 0.75f, 2.5f);
+					GameObject o = Instantiate(player, temp, Quaternion.Euler(0, -90, 0)) as GameObject;
+					o.name = "Player" + i;
+				}
 			}
 		}
 	}
