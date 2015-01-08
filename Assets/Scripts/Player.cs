@@ -7,7 +7,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public GameManager gameManager;
+
     private GameObject objectOverHead;
+    private float overHeadPosition = 4;
 	
 	[HideInInspector]
 	public float
@@ -173,7 +175,7 @@ public class Player : MonoBehaviour
 	            if (Time.time - blinkTimer > gameManager.ImmunityBlinkSpeed)
 	            {
 	                Rend.enabled = !Rend.enabled;
-	                blinkTimer = Time.time;
+                    blinkTimer = Time.time;
 	            }
 	        }
 
@@ -331,22 +333,28 @@ public class Player : MonoBehaviour
 		enviromentImmunityDuration = time;
 		col.enabled = false;
 		hurdleScore += gameManager.HurdleHitScore;
+        spawnObject("ShieldImmunityAll", time);
 	}
 
-	public void SetReversePersonalInput(float time)
+    private void spawnObject(string name, float time)
+    {
+        objectOverHead = Resources.Load("Prefabs/" + name) as GameObject;
+        if (objectOverHead != null)
+        {
+            var obj = Instantiate(objectOverHead, new Vector3(transform.position.x, transform.position.y + overHeadPosition, transform.position.z),
+                    Quaternion.Euler(0, -90, 0)) as GameObject;
+            obj.transform.parent = transform;
+            Destroy(obj, time);
+        }
+    }
+
+    public void SetReversePersonalInput(float time)
 	{
 		if (reverseControlTimer < 0)
 			controlDirection *= -1;
 		reverseControlDuration = time;
 		reverseControlTimer = 0;
-
-
-        var shield = Resources.Load("Prefabs/ShieldImmunityAll") as GameObject;
-        if (shield != null)
-        {
-            Instantiate(shield, new Vector3(transform.position.x, transform.position.y + 4, transform.position.z), Quaternion.Euler(0, -90, 0));
-        }
-        Debug.Log(shield);
+        spawnObject("ReverseControll", time);
 	}
 
     public void SetReverseOthersInput(float time)
@@ -389,7 +397,6 @@ public class Player : MonoBehaviour
 
 		Debug.Log("HitBoost");
 		StartCoroutine(StartAnimation("Walking", time));
-
 	}
 
     public void SetDead()

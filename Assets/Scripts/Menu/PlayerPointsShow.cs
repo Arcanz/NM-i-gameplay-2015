@@ -14,8 +14,6 @@ public class PlayerPointsShow : MonoBehaviour {
 
         for (var i = manager.Players.Count; i < PlayerHolder.Count; i++)
             PlayerHolder[i].gameObject.SetActive(false);
-
-
 	}
 	
 	// Update is called once per frame
