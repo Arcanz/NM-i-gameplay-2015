@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -44,7 +43,7 @@ public class GameManager : MonoBehaviour {
 	public int Direction { get { return direction; } }
 
 	private int direction = 1;
-    private bool turning;
+    public bool turning;
 
 	public List<Player> Players
 	{

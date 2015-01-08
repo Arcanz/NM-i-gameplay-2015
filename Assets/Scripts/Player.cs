@@ -269,7 +269,7 @@ public class Player : MonoBehaviour
 		moveDirection *= -1;
 		var ht = new Hashtable {{"y", .5}, {"time", time}};
         iTween.RotateBy(gameObject, ht);
-		hurdleScore = gameManager.HurdleHitScore;
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	#region Enviroment/Powerup effects
@@ -285,7 +285,7 @@ public class Player : MonoBehaviour
 		speedModifierTimer = 0;
 		ForwardSpeed = gameManager.SlowSpeed;
 		speedModifierDuration = time;
-		hurdleScore = gameManager.HurdleHitScore;
+		hurdleScore += gameManager.HurdleHitScore;
 	}
 
 	public void SetRoot(float time)
@@ -348,8 +348,11 @@ public class Player : MonoBehaviour
 
 	public void SetReverseAll(Vector3 powerupPos)
 	{
-		gameManager.IhitReverseAll(powerupPos.z);
-		hurdleScore += gameManager.HurdleHitScore;
+	    if (!gameManager.turning)
+	    {
+	        gameManager.IhitReverseAll(powerupPos.z);
+	        hurdleScore += gameManager.HurdleHitScore;
+	    }
 	}
 
 	public void SetReverseDirection()
