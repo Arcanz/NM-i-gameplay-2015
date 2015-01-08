@@ -16,7 +16,6 @@ public class MenuManager : MonoBehaviour
 
         CurrentMenu = menu;
         CurrentMenu.IsOpen = true;
-		AudioManager.PlaySound("MX/Menu");
 
     }
 }

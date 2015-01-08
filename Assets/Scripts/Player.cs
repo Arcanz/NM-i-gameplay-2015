@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
 		}
 		if (Time.time%AudioManager.PengquinStepInterval <= 0.1f)
 		{
-			AudioManager.PlaySound("PenguinStep");
+//			AudioManager.PlaySound("PenguinStep");
 		}
 
 	    if (gameManager.GameStarted)
@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
 	        {
 	            if (pos > PreviousZpos)
 	            {
-					AudioManager.PlaySound("ScoreIncrease");
+//					AudioManager.PlaySound("ScoreIncrease");
 	                distanceScore++;
 	                PreviousZpos = pos;
 	            }
@@ -215,7 +215,7 @@ public class Player : MonoBehaviour
 	        {
 	            if (pos < PreviousZpos)
 	            {
-					AudioManager.PlaySound("ScoreIncrease");
+//					AudioManager.PlaySound("ScoreIncrease");
 	                distanceScore++;
 	                PreviousZpos = pos;
 	            }

@@ -31,14 +31,14 @@ public class Menu : MonoBehaviour
 		    if(AudioManager.FabricLoaded)
 		    {
 				themeSongPlaying = true;
-			    AudioManager.PlaySound("MainTheme");
+			    AudioManager.PlaySound("MX/Menu");
 			   
 		    }
 	    }
 
 	    if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
 	    {
-			AudioManager.PlaySound("GuiButtonPush");
+//			AudioManager.PlaySound("FX/Interface/Bloop"); // probably not the place to play a sound effect!
 		    _canvasgroup.blocksRaycasts = _canvasgroup.interactable = false;
 	    }
 	    else
