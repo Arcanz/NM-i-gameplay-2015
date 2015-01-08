@@ -4,7 +4,7 @@ public class Slow : IPickupable
 {
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		AudioManager.PlaySound("SpeedSlow", transform.position);
+		AudioManager.PlaySound("SpeedSlow", gameObject);
 		playerCollider.GetComponent<Player>().SetSlow(2f);
 		Despawn();
 	}

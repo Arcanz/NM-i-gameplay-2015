@@ -14,10 +14,10 @@ public static class AudioManager
 
 		//AUDIO: without position
 	}
-	private static void playAudioWithPosition(string eventName, Vector3 position)
+	private static void playAudioWithPosition(string eventName, GameObject ob)
 	{
 		Debug.Log("Triggered sound:" + eventName);
-		Debug.Log("At position:" + position);
+		Debug.Log("At position:" + ob);
 		
 		//AUDIO: with position
 	}
@@ -32,11 +32,11 @@ public static class AudioManager
 			playAudio(n);
 	}
 
-	public static void PlaySound(string n, Vector3 p)
+	public static void PlaySound(string n, GameObject ob)
 	{
 		LoadFabric();
 		if (FabricLoaded)
-			playAudioWithPosition(n, p);
+			playAudioWithPosition(n, ob);
 	}
 
 

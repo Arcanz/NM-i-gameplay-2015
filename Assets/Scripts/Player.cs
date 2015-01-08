@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 		if (Time.time%AudioManager.PenguinSquackInterval <= 0.1f)
 		{
 			if(Random.Range(0f, 1f)>AudioManager.PenguinSquackChance)
-				AudioManager.PlaySound("PenguinSquack", transform.position);
+				AudioManager.PlaySound("PenguinSquack", gameObject);
 		}
 		if (Time.time%AudioManager.PengquinStepInterval <= 0.1f)
 		{

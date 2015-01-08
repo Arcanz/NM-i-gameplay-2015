@@ -7,7 +7,7 @@ public class Root : IPickupable
 	float timer;
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		AudioManager.PlaySound("Beartrap", transform.position);
+		AudioManager.PlaySound("Beartrap", gameObject);
 		animation.Play("LockRoot");
 		playerCollider.GetComponent<Player>().SetRoot(1.5f);
 		notOpened = true;
