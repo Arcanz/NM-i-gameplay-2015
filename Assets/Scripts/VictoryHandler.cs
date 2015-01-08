@@ -27,10 +27,10 @@ public class VictoryHandler : MonoBehaviour {
 	    manager.GameStarted = false;
 		Instantiate(Podium, new Vector3(0,1,0),Quaternion.Euler(0,-130,0));
         PlacePlayersAtPodium();
-        //foreach (var player in manager.Players)
-        //{
-        //    player.SetRoot(1000f);
-        //}
+        foreach (var player in manager.Players)
+        {
+            player.SetRoot(1000f);
+        }
 	}
 	
 	void PlacePlayersAtPodium()
