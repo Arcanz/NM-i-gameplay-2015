@@ -41,6 +41,10 @@ public static class AudioManager
 			playAudioWithPosition(n, ob);
 	}
 
+	public static void StopSound(string n)
+	{
+		Fabric.EventManager.Instance.PostEvent(n, Fabric.EventAction.StopAll);
+	}
 
 	public static void LoadFabric()
 	{

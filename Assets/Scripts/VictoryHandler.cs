@@ -24,7 +24,7 @@ public class VictoryHandler : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider playerCollider)
 	{
-//		AudioManager.StopSound("MX/BanjoAttack");
+		AudioManager.StopSound("MX/BanjoAttack");
 		AudioManager.PlaySound("MX/Victory");
 	    manager.GameStarted = false;
 		Instantiate(Podium, new Vector3(0,1,0),Quaternion.Euler(0,-130,0));
