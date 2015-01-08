@@ -46,6 +46,14 @@ public static class AudioManager
 		Fabric.EventManager.Instance.PostEvent(n, Fabric.EventAction.StopAll);
 	}
 
+	public static void FadeOutMusic(string n) {
+		// fade out the music!
+		Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
+		if (component != null) {
+			component.FadeOut(0.1f, 0.5f);
+		}
+    }
+
 	public static void LoadFabric()
 	{
 		if (FabricLoaded)
