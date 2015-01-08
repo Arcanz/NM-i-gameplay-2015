@@ -95,7 +95,7 @@ Material:
       data:
         first:
           name: _GerstnerIntensity
-        second: 0
+        second: 1
       data:
         first:
           name: _HeightDisplacement
@@ -112,7 +112,7 @@ Material:
       data:
         first:
           name: _DistortParams
-        second: {r: 0, g: 0, b: .100000001, a: 0}
+        second: {r: 1.02857149, g: .201872215, b: 2.76662493, a: -.417142838}
       data:
         first:
           name: _InvFadeParemeter
@@ -128,19 +128,19 @@ Material:
       data:
         first:
           name: _BumpTiling
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: .0399999991, g: .0399999991, b: .0399999991, a: .0799999982}
       data:
         first:
           name: _BumpDirection
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: 1, g: 30, b: 20, a: -20}
       data:
         first:
           name: _BaseColor
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: .172755614, g: .224076003, b: .24626863, a: .505882382}
       data:
         first:
           name: _ReflectionColor
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: .47582978, g: .606486499, b: .664179087, a: .470588237}
       data:
         first:
           name: _SpecularColor
@@ -152,7 +152,7 @@ Material:
       data:
         first:
           name: _GAmplitude
-        second: {r: .200000003, g: .200000003, b: .25, a: .25}
+        second: {r: .300000012, g: .200000003, b: .25, a: .25}
       data:
         first:
           name: _GFrequency
