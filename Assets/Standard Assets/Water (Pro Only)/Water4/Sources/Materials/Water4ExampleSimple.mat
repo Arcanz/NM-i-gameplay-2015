@@ -43,16 +43,16 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _WavesTex
+          name: _ShoreTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ShoreTex
+          name: _WavesTex
         second:
-          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -86,12 +86,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Shininess
-        second: 349.137939
-      data:
-        first:
           name: _FresnelScale
         second: .389714301
+      data:
+        first:
+          name: _Shininess
+        second: 349.137939
       data:
         first:
           name: _GerstnerIntensity
@@ -151,6 +151,10 @@ Material:
         second: {r: .0139923692, g: -.173590809, b: -.984718621, a: 0}
       data:
         first:
+          name: _Foam
+        second: {r: .327586204, g: .7471264, b: 0, a: 0}
+      data:
+        first:
           name: _GAmplitude
         second: {r: .300000012, g: .200000003, b: .25, a: .25}
       data:
@@ -173,10 +177,6 @@ Material:
         first:
           name: _GDirectionCD
         second: {r: -.300000012, g: -.899999976, b: .5, a: .5}
-      data:
-        first:
-          name: _Foam
-        second: {r: .327586204, g: .7471264, b: 0, a: 0}
       data:
         first:
           name: _DepthColor
