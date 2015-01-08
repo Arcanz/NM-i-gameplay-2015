@@ -9,7 +9,7 @@ public class ReverseDirection : IPickupable
 
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		AudioManager.PlaySound("FX/Obstacle/Boxing-Glove", gameObject);
+		AudioManager.PlaySound("FX/Powerups/Boxing-Glove", gameObject);
 		if(animation != null)
 			animation.Play("Punch");
 			

@@ -186,7 +186,7 @@ GameObject:
   - 4: {fileID: 99408589}
   - 114: {fileID: 99408590}
   m_Layer: 0
-  m_Name: Obstacles
+  m_Name: Powerups
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   _eventList:
   - _UnSet_
   - FX/Interface/Bloop
-  - FX/Obstacle/Boxing-Glove
+  - FX/Powerups/Boxing-Glove
   - MX/BanjoAttack
   - MX/Menu
   - MX/Victory
@@ -1715,7 +1715,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: FX/Obstacle/Boxing-Glove
+  _eventName: FX/Powerups/Boxing-Glove
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -2231,7 +2231,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: FX/Obstacle/Boxing-Glove
+  _eventName: FX/Powerups/Boxing-Glove
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -5071,7 +5071,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: FX/Obstacle/Boxing-Glove
+  _eventName: FX/Powerups/Boxing-Glove
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:

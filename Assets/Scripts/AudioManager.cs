@@ -56,8 +56,9 @@ public static class AudioManager
 
 	public static void LoadFabric()
 	{
-		if (FabricLoaded)
+		if (FabricLoaded) { // || Application.isLoadingLevel) {
 			return;
+		}
 		Application.LoadLevelAdditive("Audio");
 	}
 }
