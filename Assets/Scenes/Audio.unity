@@ -906,7 +906,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: .562341332
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -1852,8 +1852,8 @@ MonoBehaviour:
   _panLevel: 1
   _spreadLevel: 0
   _dopplerLevel: 1
-  _maxDistance: 500
-  _minDistance: 1
+  _maxDistance: 100
+  _minDistance: 20
   _rolloffMode: 0
   _overrideFadeProperties: 0
   _fadeInTime: 0
@@ -4058,7 +4058,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: .562341332
+  _volume: 1
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
