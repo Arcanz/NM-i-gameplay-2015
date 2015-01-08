@@ -20,6 +20,8 @@ public class VictoryHandler : MonoBehaviour {
 		PlayerPodiumPos.Add(new Vector3(0.7f, 3.8f, -3.2f)); // Third
 		PlayerPodiumPos.Add(new Vector3(3.5f, 2.85f, -0.5f)); // Forth
 
+	    if (gameOverMenu == null)
+            gameOverMenu = GameObject.Find("GameOverScoreboardboard");
 	    manager = FindObjectOfType<GameManager>();
 	    cameraScript = FindObjectOfType<Camera>().GetComponent<CameraPlayerMovement>();
 	    players = manager.Players;
