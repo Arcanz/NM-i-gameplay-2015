@@ -960,16 +960,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  BoostSpeed: 15
-  DefaultSpeed: 15
-  SlowSpeed: 5
   ForwardSpeed: 15
-  SidewayMoveAmount: .5
-  TurnSpeed: .100000001
-  ImmunityBlinkSpeed: .5
   PreviousZpos: 0
-  LowBoundry: -5.5
-  HighBoundry: 4.30000019
   ID: 0
   Rend: {fileID: 0}
   alive: 1

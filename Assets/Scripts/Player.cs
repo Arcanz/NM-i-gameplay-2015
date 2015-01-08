@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
 
 	}
 
-	private void StopSliding()
+	public void StopSliding()
 	{
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
