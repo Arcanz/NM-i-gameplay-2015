@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
         Rend = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
 		col = gameObject.collider;
 
+	    ForwardSpeed = gameManager.DefaultSpeed;
 		OLKeyCodes = gameManager.LeftKeyCodes;
 		ORKeyCodes = gameManager.RightKeyCodes;
 	}
