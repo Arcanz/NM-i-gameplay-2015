@@ -21,7 +21,7 @@ public class VictoryHandler : MonoBehaviour {
 		PlayerPodiumPos.Add(new Vector3(3.5f, 2.85f, -0.5f)); // Forth
 
 	    if (gameOverMenu == null)
-            gameOverMenu = GameObject.Find("GameOverScoreboardboard");
+            gameOverMenu = GameObject.Find("gameOverPanel");
 	    manager = FindObjectOfType<GameManager>();
 	    cameraScript = FindObjectOfType<Camera>().GetComponent<CameraPlayerMovement>();
 	    players = manager.Players;
@@ -34,15 +34,12 @@ public class VictoryHandler : MonoBehaviour {
         PlacePlayersAtPodium();
 	    cameraScript.victorious = true;
         gameOverMenu.SetActive(true);
-        foreach (var player in manager.Players)
-        {
-            player.SetRoot(1000f);
-        }
+        
 	}
 	
 	void PlacePlayersAtPodium()
 	{
-        rankPlayers = players.OrderBy(p => p.Score).ToList();
+        rankPlayers = players.OrderByDescending(p => p.Score).ToList();
 	    for (int i = 0; i < rankPlayers.Count; i++)
 	    {
 	        string tempName = rankPlayers[i].name;

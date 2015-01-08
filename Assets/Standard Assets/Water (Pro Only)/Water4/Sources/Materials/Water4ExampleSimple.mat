@@ -156,11 +156,11 @@ Material:
       data:
         first:
           name: _GAmplitude
-        second: {r: .300000012, g: .200000003, b: .25, a: .25}
+        second: {r: .150000006, g: .100000001, b: .125, a: .125}
       data:
         first:
           name: _GFrequency
-        second: {r: .5, g: .25, b: .600000024, a: .245000005}
+        second: {r: 1, g: .5, b: 1.20000005, a: .49000001}
       data:
         first:
           name: _GSteepness
