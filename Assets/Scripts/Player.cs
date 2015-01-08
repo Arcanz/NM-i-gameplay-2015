@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
 	public float
 		ForwardSpeed = 10f,
 		PreviousZpos;
-	
 
-	[HideInInspector]
+
+    public int myScore;
 	public int Score { get { return hurdleScore + distanceScore; } }
 
     private int distanceScore,
@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+	    myScore = Score;
 	    if (gameManager.GameStarted)
 	    {
 	        #region "Powerup" timers
@@ -233,7 +234,7 @@ public class Player : MonoBehaviour
 
 	}
 
-	private void StopSliding()
+	public void StopSliding()
 	{
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
