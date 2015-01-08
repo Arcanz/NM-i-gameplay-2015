@@ -12,7 +12,7 @@ public class SpeedIncrease : IPickupable
 	{
 		if (triggered)
 		{
-			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("SpeedIncrease");
+			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("FX/Powerups/Speed-Increase");
 			if (comp != null)
 			{
 				if (comp.IsPlaying() == false)
