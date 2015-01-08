@@ -44,7 +44,6 @@ public class VictoryHandler : MonoBehaviour {
 	        string tempName = rankPlayers[i].name;
 	        var tempPlayer = Resources.Load("Prefabs/" + tempName);
 	        GameObject o = Instantiate(Resources.Load("Prefabs/" + tempName), PlayerPodiumPos[i], Quaternion.Euler(0, 50, 0)) as GameObject;
-            Debug.Log(PlayerPodiumPos[i]);
 	        o.collider.enabled = false;
 	    }
 	}
