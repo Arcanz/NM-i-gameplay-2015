@@ -5,7 +5,7 @@ public class Menu : MonoBehaviour
     private Animator _animator;
     private CanvasGroup _canvasgroup;
 
-	bool themeSongPlaying = false;
+	
 
     public bool IsOpen
     {
@@ -15,7 +15,7 @@ public class Menu : MonoBehaviour
 
     public void Awake()
     {
-		AudioManager.LoadFabric();
+		
 
 	    _animator = GetComponent<Animator>();
         _canvasgroup = GetComponent<CanvasGroup>();
@@ -26,15 +26,7 @@ public class Menu : MonoBehaviour
 
     public void Update()
     {
-	    if (!themeSongPlaying)
-	    {
-		    if(AudioManager.FabricLoaded)
-		    {
-				themeSongPlaying = true;
-			    AudioManager.PlaySound("MX/Menu");
-			   
-		    }
-	    }
+	   
 
 	    if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
 	    {
