@@ -13,6 +13,7 @@ public static class AudioManager
 		Debug.Log("Triggered sound:" + eventName);
 
 		//AUDIO: without position
+		Fabric.EventManager.Instance.PostEvent(eventName);
 	}
 	private static void playAudioWithPosition(string eventName, GameObject ob)
 	{
@@ -20,6 +21,7 @@ public static class AudioManager
 		Debug.Log("At position:" + ob);
 		
 		//AUDIO: with position
+		Fabric.EventManager.Instance.PostEvent(eventName, ob);
 	}
 
 	public static bool FabricLoaded {get { return Fabric.EventManager.Instance; }}
