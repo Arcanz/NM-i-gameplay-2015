@@ -4,7 +4,7 @@ public class ReverseInput : IPickupable
 {
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		playerCollider.GetComponent<Player>().SetReversePersonalInput(2f);
+		playerCollider.GetComponent<Player>().SetReverseOthersInput(2f);
 		Despawn();
 	}
 	void Update()

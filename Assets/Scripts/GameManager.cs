@@ -82,7 +82,13 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	Player FindLeadingPlayer()
+    public void IhitReverseOtherInput(float time, int ID)
+    {
+        foreach (var player in Players.Where(player => player.ID != ID))
+            player.SetReversePersonalInput(time);
+    }
+
+    Player FindLeadingPlayer()
 	{
 		Player leadingPlayer = null;
 		foreach (var player in Players)
@@ -179,7 +185,7 @@ public class GameManager : MonoBehaviour {
     {
         player.ForwardSpeed = 0;
         player.SetOtherInputImmunity(2);
-        iTween.MoveBy(player.gameObject, new Vector3(0, 40, 0), 0.5f);
+        iTween.MoveBy(player.gameObject, new Vector3(0, 30, 0), 1f);
         StartCoroutine(MovePlayer(player));
         StartCoroutine(SetPlayerAsDead(player));
     }

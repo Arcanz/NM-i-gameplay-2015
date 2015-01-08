@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Fabric;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
 	public GameManager gameManager;
-
+    private GameObject objectOverHead;
 	
 	[HideInInspector]
 	public float
@@ -338,7 +339,20 @@ public class Player : MonoBehaviour
 			controlDirection *= -1;
 		reverseControlDuration = time;
 		reverseControlTimer = 0;
+
+
+        var shield = Resources.Load("Prefabs/ShieldImmunityAll") as GameObject;
+        if (shield != null)
+        {
+            Instantiate(shield, new Vector3(transform.position.x, transform.position.y + 4, transform.position.z), Quaternion.Euler(0, -90, 0));
+        }
+        Debug.Log(shield);
 	}
+
+    public void SetReverseOthersInput(float time)
+    {
+        gameManager.IhitReverseOtherInput(time, ID);
+    }
 
 	public void SetDirection(int dir)
 	{
