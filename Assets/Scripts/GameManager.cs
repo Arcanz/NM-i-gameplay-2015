@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour {
 			    {
 			        player.GetComponent<Player>().ID = i;
 			        player.GetComponent<Player>().alive = true;
-			        var temp = new Vector3 (-4f + i*5f, 0.75f, 2.5f);
+			        var temp = new Vector3 (-4f + i*2f, 0.75f, 2.5f);
                     Instantiate(player, temp, Quaternion.Euler(0, -90, 0));
 			    }
 			}
