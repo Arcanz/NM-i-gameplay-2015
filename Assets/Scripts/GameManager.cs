@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour {
 		{
 			if(NumberOfPlayers < 2)
 				NumberOfPlayers = 2;
-			
 			for(var i = 0; i < NumberOfPlayers; i++)
 			{
 				var player = Resources.Load("Prefabs/Player" + i) as GameObject;
@@ -76,7 +75,7 @@ public class GameManager : MonoBehaviour {
 			    {
 			        player.GetComponent<Player>().ID = i;
 			        player.GetComponent<Player>().alive = true;
-			        var temp = new Vector3 (-4f + i*2f, 0.75f, 2.5f);
+			        var temp = new Vector3 (-4f + i*5f, 0.75f, 2.5f);
                     Instantiate(player, temp, Quaternion.Euler(0, -90, 0));
 			    }
 			}
