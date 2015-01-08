@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class VictoryHandler : MonoBehaviour {
 	private GameObject Podium, FirstPlacePlayer, SecondPlacePlayer, ThirdPlacePlayer, ForthPlacePlayer;
@@ -9,10 +8,11 @@ public class VictoryHandler : MonoBehaviour {
     private GameManager manager;
     private List<Player> players, rankPlayers;
     private int Score;
+    public GameObject gameOverMenu;
+
 	// Use this for initialization
 	void Start () {
 		Podium = Resources.Load("Prefabs/VictoryPodium") as GameObject;
-		
 		FirstPlacePos = new Vector3(-5.25f, 6f, -4.6f);
 		SecondPlacePos = new Vector3(-6.8f, 3.8f, -5.9f); 
 		ThirdPlacePos = new Vector3(-3.8f, 3.2f, -3.4f);
@@ -25,8 +25,11 @@ public class VictoryHandler : MonoBehaviour {
 	void OnTriggerEnter(Collider playerCollider)
 	{
 	    manager.GameStarted = false;
-		Instantiate(Podium, new Vector3(0,1,0),Quaternion.Euler(0,-130,0));
+        Instantiate(Podium, new Vector3(0, 1, 0), Quaternion.Euler(0, -130, 0));
+
+        gameOverMenu.SetActive(true);
         PlacePlayersAtPodium();
+
         foreach (var player in manager.Players)
         {
             player.SetRoot(1000f);

@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
 	public List<Player> Players
 	{
 		//NOTE: Gets new players once, then stores it
-		get { return players ?? (players = FindObjectsOfType<Player>().ToList()); }
+		get { return players ?? (players = FindObjectsOfType<Player>().ToList().OrderBy(p => p.ID).ToList()); }
 	}
 
 	public List<KeyCode> LeftKeyCodes
@@ -183,7 +183,6 @@ public class GameManager : MonoBehaviour {
     public void KillPlayer(Player player)
     {
         player.ForwardSpeed = 0;
-        player.SetOtherInputImmunity(2);
         iTween.MoveBy(player.gameObject, new Vector3(0, 30, 0), 1f);
         StartCoroutine(MovePlayer(player));
         StartCoroutine(SetPlayerAsDead(player));

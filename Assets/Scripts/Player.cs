@@ -341,8 +341,7 @@ public class Player : MonoBehaviour
         objectOverHead = Resources.Load("Prefabs/" + name) as GameObject;
         if (objectOverHead != null)
         {
-            var obj = Instantiate(objectOverHead, new Vector3(transform.position.x, transform.position.y + overHeadPosition, transform.position.z),
-                    Quaternion.Euler(0, -90, 0)) as GameObject;
+            var obj = Instantiate(objectOverHead, new Vector3(transform.position.x, transform.position.y + overHeadPosition, transform.position.z), Quaternion.Euler(0, -90, 0)) as GameObject;
             obj.transform.parent = transform;
             Destroy(obj, time);
         }
@@ -354,7 +353,7 @@ public class Player : MonoBehaviour
 			controlDirection *= -1;
 		reverseControlDuration = time;
 		reverseControlTimer = 0;
-        spawnObject("ReverseControll", time);
+        spawnObject("birds", time);
 	}
 
     public void SetReverseOthersInput(float time)

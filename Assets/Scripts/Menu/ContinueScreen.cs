@@ -8,7 +8,9 @@ public class ContinueScreen : MonoBehaviour
     private GameManager manager;
     public List<GameObject> HolderObject;
     public List<Text> PlayerNameText;
-    public List<Text> PlayerKeysText;
+    public List<Text> PlayerKeysTextLight;
+    public List<Text> PlayerKeyTextDark;
+
     public float TimeToGameStart = 0.5f;
     private int green;
 
@@ -16,8 +18,10 @@ public class ContinueScreen : MonoBehaviour
     {
         manager = FindObjectOfType<GameManager>();
         for (var i = 0; i < manager.Players.Count; i++)
-            PlayerKeysText[i].text = manager.Players[i].leftKeyCode + " / " + manager.Players[i].rightKeyCode;
-
+        {
+            PlayerKeysTextLight[i].text = manager.Players[i].leftKeyCode + " / " + manager.Players[i].rightKeyCode;
+            PlayerKeyTextDark[i].text = manager.Players[i].leftKeyCode + " / " + manager.Players[i].rightKeyCode;
+        }
         for (var i = manager.Players.Count; i < 4; i++)
             HolderObject[i].gameObject.SetActive(false);
     }
@@ -29,7 +33,7 @@ public class ContinueScreen : MonoBehaviour
 	        if (Input.GetKeyDown(manager.Players[i].leftKeyCode) || Input.GetKeyDown(manager.Players[i].rightKeyCode))
 	        {
 	            PlayerNameText[i].color = Color.green;
-	            PlayerKeysText[i].color = Color.green;
+                PlayerKeysTextLight[i].color = Color.green;
             }
 
 	    foreach (var text in PlayerNameText)
