@@ -3,49 +3,57 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class VictoryHandler : MonoBehaviour {
+public class VictoryHandler : MonoBehaviour
+{
 	private GameObject Podium, FirstPlacePlayer, SecondPlacePlayer, ThirdPlacePlayer, ForthPlacePlayer;
-	private Vector3 FirstPlacePos, SecondPlacePos, ThirdPlacePos, ForthPlacePos;
-    private GameManager manager;
-    private List<Player> players, rankPlayers;
-    private int Score;
+	private GameManager manager;
+	private CameraPlayerMovement cameraScript;
+	private List<Player> players, rankPlayers;
+	private List<Vector3> PlayerPodiumPos;
+	private int Score;
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		Podium = Resources.Load("Prefabs/VictoryPodium") as GameObject;
-		
-		FirstPlacePos = new Vector3(-5.25f, 6f, -4.6f);
-		SecondPlacePos = new Vector3(-6.8f, 3.8f, -5.9f); 
-		ThirdPlacePos = new Vector3(-3.8f, 3.2f, -3.4f);
-		ForthPlacePos = new Vector3(-1f, 2.25f, -1f);
+		PlayerPodiumPos = new List<Vector3>();
+		PlayerPodiumPos.Add(new Vector3(-1.3f, 6.6f, -4.6f)); // First Place
+		PlayerPodiumPos.Add(new Vector3(-3.14f, 4.6f, -6.1f)); // Second
+		PlayerPodiumPos.Add(new Vector3(0.7f, 3.8f, -3.2f)); // Third
+		PlayerPodiumPos.Add(new Vector3(3.5f, 2.85f, -0.5f)); // Forth
 
-	    manager = FindObjectOfType<GameManager>();
-	    players = manager.Players;
+		manager = FindObjectOfType<GameManager>();
+		cameraScript = FindObjectOfType<Camera>().GetComponent<CameraPlayerMovement>();
+		players = manager.Players;
 	}
-	
+
 	void OnTriggerEnter(Collider playerCollider)
 	{
 		AudioManager.StopSound("MX/BanjoAttack");
 		AudioManager.PlaySound("MX/Victory");
-	    manager.GameStarted = false;
-		Instantiate(Podium, new Vector3(0,1,0),Quaternion.Euler(0,-130,0));
-        PlacePlayersAtPodium();
-        //foreach (var player in manager.Players)
-        //{
-        //    player.SetRoot(1000f);
-        //}
+		manager.GameStarted = false;
+		Instantiate(Podium, new Vector3(4, 1f, 0), Quaternion.Euler(0, -130, 0));
+		PlacePlayersAtPodium();
+		cameraScript.victorious = true;
+		foreach (var player in manager.Players)
+		{
+			player.SetRoot(1000f);
+		}
 	}
-	
+
 	void PlacePlayersAtPodium()
 	{
-        rankPlayers = players.OrderBy(p => p.Score).ToList();
-		rankPlayers[0].transform.position = FirstPlacePos;
-        rankPlayers[1].transform.position = SecondPlacePos;
-        rankPlayers[2].transform.position = ThirdPlacePos;
-        rankPlayers[3].transform.position = ForthPlacePos;
+		rankPlayers = players.OrderBy(p => p.Score).ToList();
+		for (int i = 0; i < rankPlayers.Count; i++)
+		{
+			string tempName = rankPlayers[i].name;
+			var tempPlayer = Resources.Load("Prefabs/" + tempName);
+			GameObject o = Instantiate(Resources.Load("Prefabs/" + tempName), PlayerPodiumPos[i], Quaternion.Euler(0, 50, 0)) as GameObject;
+			o.collider.enabled = false;
+		}
 	}
 	// Update is called once per frame
-	void Update () 
+	void Update()
 	{
-	
+
 	}
 }
