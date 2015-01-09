@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public static int NumberOfPlayers;
 	public int HurdleHitScore;
     public bool GameStarted;
+	public GameObject scoreCrown;
 
 	public float 
 		BoostSpeed = 15f, 
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour {
 		ImmunityBlinkSpeed = .5f,
 		LowBoundry = -5.5f,
 		HighBoundry = 4.3f,
-		RespawnImunityTime = 1;
+		RespawnImunityTime = 1,
+		ScoreCrownOffset = 5f;
 
     public int NumberOfDeadPlayers
     {
@@ -155,6 +157,10 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
+	    if (scoreCrown != null)
+	    {
+		    scoreCrown.transform.position = Players.OrderByDescending(p=>p.Score).ToList().First().transform.position + new Vector3(0, ScoreCrownOffset, 0);
+	    }
         if (GameStarted)
         {
             foreach (var player in AlivePlayers)
