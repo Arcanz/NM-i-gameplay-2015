@@ -99,8 +99,10 @@ public class Player : MonoBehaviour
 	    myScore = Score;
 		if (Time.time%AudioManager.PenguinSquackInterval <= 0.1f)
 		{
-			if(Random.Range(0f, 1f)>AudioManager.PenguinSquackChance)
-				AudioManager.PlaySound("PenguinSquack", gameObject);
+			float shouldIPlay = Mathf.RoundToInt(Random.Range(0f, 1f) * 1000);
+	
+			if (shouldIPlay == 1)		//>AudioManager.PenguinSquackChance)
+				AudioManager.PlaySound("FX/General/Penguin-Squawk", gameObject);
 		}
 		if (Time.time%AudioManager.PengquinStepInterval <= 0.1f)
 		{
