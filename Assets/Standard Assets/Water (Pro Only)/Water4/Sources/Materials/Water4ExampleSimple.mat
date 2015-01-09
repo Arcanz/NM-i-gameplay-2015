@@ -86,12 +86,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _FresnelScale
-        second: .389714301
-      data:
-        first:
           name: _Shininess
         second: 349.137939
+      data:
+        first:
+          name: _FresnelScale
+        second: .389714301
       data:
         first:
           name: _GerstnerIntensity
