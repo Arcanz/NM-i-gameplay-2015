@@ -8,6 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Scenes/NewGameScene.unity
   - enabled: 1
     path: Assets/Scenes/Audio.unity
