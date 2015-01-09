@@ -97,11 +97,13 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 	    myScore = Score;
-		if (Time.time%AudioManager.PenguinSquackInterval <= 0.1f)
-		{
-			if(Random.Range(0f, 1f)>AudioManager.PenguinSquackChance)
-				AudioManager.PlaySound("PenguinSquack", gameObject);
-		}
+//		if (Time.time%AudioManager.PenguinSquackInterval <= 0.1f)
+//		{
+			float shouldIPlay = Mathf.RoundToInt(Random.Range(0f, 0.3f) * 1000);
+	
+			if (shouldIPlay == 1)		//>AudioManager.PenguinSquackChance)
+				AudioManager.PlaySound("FX/General/Penguin-Squawk", gameObject);
+//		}
 		if (Time.time%AudioManager.PengquinStepInterval <= 0.1f)
 		{
 //			AudioManager.PlaySound("PenguinStep");
@@ -162,8 +164,13 @@ public class Player : MonoBehaviour
 	            speedModifierTimer += Time.deltaTime;
 	            if (speedModifierTimer >= speedModifierDuration)
 	            {
+					if(ForwardSpeed == gameManager.SlowSpeed)
+					{
+
+					}
 	                ForwardSpeed = gameManager.DefaultSpeed;
 	                speedModifierTimer = -1;
+	                AudioManager.StopSound("FX/Powerups/Speed-Slow");
 	            }
 	        }
 
@@ -229,6 +236,10 @@ public class Player : MonoBehaviour
 	    }
 	}
 
+    public void GivePlayerWinScore(int score)
+    {
+        hurdleScore += score;
+    }
 	void FixedUpdate()
 	{
 		var p = transform.position;
@@ -256,14 +267,14 @@ public class Player : MonoBehaviour
 		//Others pushing left?
 		if (OLKeyCodes.Where(keycode => keycode != leftKeyCode).Where(Input.GetKeyDown).Any())
 		{
-			horizontalMove(gameManager.SidewayInfluenceAMount, controlDirection);
+			horizontalMove(gameManager.EnemyInfluenceAMount, controlDirection);
 			return;
 		}
 
 		//Others pushing right?
 		if (ORKeyCodes.Where(keyCode => keyCode != rightKeyCode).Where(Input.GetKeyDown).Any())
 		{
-			horizontalMove(-gameManager.SidewayInfluenceAMount, controlDirection);
+			horizontalMove(-gameManager.EnemyInfluenceAMount, controlDirection);
 		}
 	}
 
@@ -399,7 +410,7 @@ public class Player : MonoBehaviour
 	{
 		animation.Play("Fall to slide");
 		StartCoroutine(StartAnimation("Slide", 0.5f));
-		StartCoroutine(StartAnimation("Rise for slide", 1f));
+		StartCoroutine(StartAnimation("Rise for slide", 1.5f));
 		speedModifierTimer = 0;
 		ForwardSpeed = gameManager.BoostSpeed;
 		speedModifierDuration = time;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,9 @@ public class GameOverMenu : MonoBehaviour
     public List<Text> PlayerScore;
     public List<Text> PlayerScoreLight;
     public List<GameObject> PlayerHolders;
-
+    public List<Text> PlayerNameLight;
+    public List<Text> PlayerNameDark;
+ 
     void Start()
     {
         if (gameManager == null)
@@ -25,15 +28,21 @@ public class GameOverMenu : MonoBehaviour
 
     void Update()
     {
+        var sorted = gameManager.Players.OrderByDescending(p => p.Score).ToList();
         for (var i = 0; i < gameManager.Players.Count; i++)
         {
-            PlayerScore[i].text = gameManager.Players[i].Score.ToString();
-            PlayerScoreLight[i].text = gameManager.Players[i].Score.ToString();
+            PlayerScore[i].text = sorted[i].Score.ToString();
+            PlayerScoreLight[i].text = sorted[i].Score.ToString();
+            PlayerNameDark[i].text = "Player " + (sorted[i].ID + 1) + "";
+            PlayerNameLight[i].text = "Player " + (sorted[i].ID + 1) + "";
         }
     }
 
     public void ReturnToMainMenu()
     {
+		// Stop the applause
+        AudioManager.StopSound("FX/Race-End/Applause");
+		AudioManager.StopSound("MX/Victory");
         Application.LoadLevel(0);
     }
 }

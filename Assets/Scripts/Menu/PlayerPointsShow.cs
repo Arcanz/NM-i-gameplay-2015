@@ -9,9 +9,12 @@ public class PlayerPointsShow : MonoBehaviour {
     public List<Image> PlayerHolder;
     public List<Text> PlayerScoreText;
     public List<Text> PlayerScoreTextLight;
+    public bool victory;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+	    victory = false;
         manager = FindObjectOfType<GameManager>();
 
         for (var i = manager.Players.Count; i < PlayerHolder.Count; i++)
@@ -21,14 +24,14 @@ public class PlayerPointsShow : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (manager.GameStarted)
+	    if (manager.GameStarted || victory)
 	    {
-	        var sortedPlayers = manager.Players.OrderByDescending(p => p.Score).ToList();
-	        for (var i = 0; i < manager.Players.Count; i++)
+            for (var i = 0; i < manager.Players.Count; i++)
 	        {
-                PlayerScoreText[i].text = sortedPlayers[i].Score.ToString();
-                PlayerScoreTextLight[i].text = sortedPlayers[i].Score.ToString();
+                PlayerScoreText[i].text = manager.Players[i].Score.ToString();
+                PlayerScoreTextLight[i].text = manager.Players[i].Score.ToString();
 	        }
+	        victory = false;
 	    }
 	}
 }
