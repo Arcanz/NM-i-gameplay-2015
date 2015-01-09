@@ -31,6 +31,7 @@ public class VictoryHandler : MonoBehaviour
 
 	void OnTriggerEnter(Collider playerCollider)
 	{
+//		AudioManager.PlaySound("FX/Race-End/Horn-Sound");
 		// Stop race music
 		AudioManager.StopSound("MX/BanjoAttack");
 		// Start victory music
