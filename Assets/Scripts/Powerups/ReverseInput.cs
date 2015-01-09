@@ -24,7 +24,7 @@ public class ReverseInput : IPickupable
 		gameObject.transform.Rotate(0,2,0);
 		if (triggered)
 		{
-			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("ReverseInput");
+			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("FX/Powerups/Reverse-Input");
 			if (comp != null)
 			{
 				if (comp.IsPlaying() == false)

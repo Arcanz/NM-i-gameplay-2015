@@ -4,7 +4,7 @@ public class InputImmunity : IPickupable
 {
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		AudioManager.PlaySound("InputSheild", gameObject);
+		AudioManager.PlaySound("FX/Powerups/Immunity-Input", gameObject);
 		playerCollider.GetComponent<Player>().SetOtherInputImmunity(2f);
 		Trigger();
 	}
@@ -14,7 +14,7 @@ public class InputImmunity : IPickupable
 
 		if (triggered)
 		{
-			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("InputSheild");
+			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("FX/Powerups/Immunity-Input");
 			if (comp != null)
 			{
 				if(comp.IsPlaying() == false)

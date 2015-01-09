@@ -12,7 +12,7 @@ public class Slow : IPickupable
 	{
 		if (triggered)
 		{
-			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("SpeedSlow");
+			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("FX/Powerups/Speed-Slow");
 			if (comp != null)
 			{
 				if (comp.IsPlaying() == false)
