@@ -162,6 +162,10 @@ public class Player : MonoBehaviour
 	            speedModifierTimer += Time.deltaTime;
 	            if (speedModifierTimer >= speedModifierDuration)
 	            {
+					if(ForwardSpeed == gameManager.SlowSpeed)
+					{
+
+					}
 	                ForwardSpeed = gameManager.DefaultSpeed;
 	                speedModifierTimer = -1;
 	                AudioManager.StopSound("FX/Powerups/Speed-Slow");
