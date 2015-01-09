@@ -21,4 +21,10 @@ public class SpeedIncrease : IPickupable
 		}
 
 	}
+
+    void Update()
+    {
+        float offset = Time.time * 1f;
+        renderer.material.mainTextureOffset = new Vector2(0,-offset);
+    }
 }

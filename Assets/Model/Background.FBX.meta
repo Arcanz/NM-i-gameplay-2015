@@ -1,0 +1,375 @@
+fileFormatVersion: 2
+guid: 45e9d60f2c9c6704ab701cf7898b9342
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bone_Head003
+    100004: Bone_Head004
+    100006: Bone_Head007
+    100008: Bone_Head008
+    100010: Bone_Main003
+    100012: Bone_Main004
+    100014: Bone_Main007
+    100016: Bone_Main008
+    100018: Bone_Tail_007
+    100020: Bone_Tail_008
+    100022: Bone_Tail_009
+    100024: Bone_Tail_010
+    100026: Bone_Tail_015
+    100028: Bone_Tail_016
+    100030: Bone_Tail_017
+    100032: Bone_Tail_018
+    100034: Bone_Tail_End003
+    100036: Bone_Tail_End004
+    100038: Bone_Tail_End007
+    100040: Bone_Tail_End008
+    100042: Bone_Torso003
+    100044: Bone_Torso004
+    100046: Bone_Torso007
+    100048: Bone_Torso008
+    100050: Capsule003
+    100052: Capsule004
+    100054: Capsule007
+    100056: Capsule008
+    100058: Circle001
+    100060: Dummy007
+    100062: Dummy008
+    100064: Dummy009
+    100066: Dummy010
+    100068: Dummy015
+    100070: Dummy016
+    100072: Dummy017
+    100074: Dummy018
+    100076: Dummy019
+    100078: Dummy020
+    100080: Dummy021
+    100082: Left Flip003
+    100084: Left Flip004
+    100086: Left Flip007
+    100088: Left Flip008
+    100090: Left Foot003
+    100092: Left Foot004
+    100094: Left Foot007
+    100096: Left Foot008
+    100098: Penguin002
+    100100: Penguin003
+    100102: Penguin006
+    100104: Penguin007
+    100106: Plane001
+    100108: Right Flip003
+    100110: Right Flip004
+    100112: Right Flip007
+    100114: Right Flip008
+    100116: Right Foot003
+    100118: Right Foot004
+    100120: Right Foot007
+    100122: Right Foot008
+    100124: TopHat002
+    100126: TopHat003
+    100128: TopHat006
+    100130: TopHat007
+    400000: //RootNode
+    400002: Bone_Head003
+    400004: Bone_Head004
+    400006: Bone_Head007
+    400008: Bone_Head008
+    400010: Bone_Main003
+    400012: Bone_Main004
+    400014: Bone_Main007
+    400016: Bone_Main008
+    400018: Bone_Tail_007
+    400020: Bone_Tail_008
+    400022: Bone_Tail_009
+    400024: Bone_Tail_010
+    400026: Bone_Tail_015
+    400028: Bone_Tail_016
+    400030: Bone_Tail_017
+    400032: Bone_Tail_018
+    400034: Bone_Tail_End003
+    400036: Bone_Tail_End004
+    400038: Bone_Tail_End007
+    400040: Bone_Tail_End008
+    400042: Bone_Torso003
+    400044: Bone_Torso004
+    400046: Bone_Torso007
+    400048: Bone_Torso008
+    400050: Capsule003
+    400052: Capsule004
+    400054: Capsule007
+    400056: Capsule008
+    400058: Circle001
+    400060: Dummy007
+    400062: Dummy008
+    400064: Dummy009
+    400066: Dummy010
+    400068: Dummy015
+    400070: Dummy016
+    400072: Dummy017
+    400074: Dummy018
+    400076: Dummy019
+    400078: Dummy020
+    400080: Dummy021
+    400082: Left Flip003
+    400084: Left Flip004
+    400086: Left Flip007
+    400088: Left Flip008
+    400090: Left Foot003
+    400092: Left Foot004
+    400094: Left Foot007
+    400096: Left Foot008
+    400098: Penguin002
+    400100: Penguin003
+    400102: Penguin006
+    400104: Penguin007
+    400106: Plane001
+    400108: Right Flip003
+    400110: Right Flip004
+    400112: Right Flip007
+    400114: Right Flip008
+    400116: Right Foot003
+    400118: Right Foot004
+    400120: Right Foot007
+    400122: Right Foot008
+    400124: TopHat002
+    400126: TopHat003
+    400128: TopHat006
+    400130: TopHat007
+    2300000: Plane001
+    2300002: TopHat002
+    2300004: TopHat003
+    2300006: TopHat006
+    2300008: TopHat007
+    3300000: Plane001
+    3300002: TopHat002
+    3300004: TopHat003
+    3300006: TopHat006
+    3300008: TopHat007
+    4300000: Plane001
+    4300002: Capsule003
+    4300004: TopHat002
+    4300006: Capsule004
+    4300008: TopHat003
+    4300010: Capsule007
+    4300012: TopHat006
+    4300014: Capsule008
+    4300016: TopHat007
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Capsule003
+    13700002: Capsule004
+    13700004: Capsule007
+    13700006: Capsule008
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 486
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Circle001
+        weight: 1
+      - path: Dummy015
+        weight: 1
+      - path: Dummy015/Penguin002
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Tail_007
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Tail_007/Bone_Tail_008
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Tail_007/Bone_Tail_008/Bone_Tail_End003
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Torso003
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Torso003/Bone_Head003
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Torso003/Bone_Head003/Dummy007
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Torso003/Bone_Head003/Dummy007/TopHat002
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Torso003/Left Flip003
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Bone_Torso003/Right Flip003
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Dummy008
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Left Foot003
+        weight: 1
+      - path: Dummy015/Penguin002/Bone_Main003/Right Foot003
+        weight: 1
+      - path: Dummy015/Penguin002/Capsule003
+        weight: 1
+      - path: Dummy016
+        weight: 1
+      - path: Dummy016/Penguin003
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Tail_009
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Tail_009/Bone_Tail_010
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Tail_009/Bone_Tail_010/Bone_Tail_End004
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Torso004
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Torso004/Bone_Head004
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Torso004/Bone_Head004/Dummy009
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Torso004/Bone_Head004/Dummy009/TopHat003
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Torso004/Left Flip004
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Bone_Torso004/Right Flip004
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Dummy010
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Left Foot004
+        weight: 1
+      - path: Dummy016/Penguin003/Bone_Main004/Right Foot004
+        weight: 1
+      - path: Dummy016/Penguin003/Capsule004
+        weight: 1
+      - path: Dummy019
+        weight: 1
+      - path: Dummy019/Penguin007
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Tail_017
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Tail_017/Bone_Tail_018
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Tail_017/Bone_Tail_018/Bone_Tail_End008
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Torso008
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Torso008/Bone_Head008
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Torso008/Bone_Head008/Dummy020
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Torso008/Bone_Head008/Dummy020/TopHat007
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Torso008/Left Flip008
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Bone_Torso008/Right Flip008
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Dummy021
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Left Foot008
+        weight: 1
+      - path: Dummy019/Penguin007/Bone_Main008/Right Foot008
+        weight: 1
+      - path: Dummy019/Penguin007/Capsule008
+        weight: 1
+      - path: Penguin006
+        weight: 1
+      - path: Penguin006/Bone_Main007
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Tail_015
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Tail_015/Bone_Tail_016
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Tail_015/Bone_Tail_016/Bone_Tail_End007
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Torso007
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Torso007/Bone_Head007
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Torso007/Bone_Head007/Dummy017
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Torso007/Bone_Head007/Dummy017/TopHat006
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Torso007/Left Flip007
+        weight: 1
+      - path: Penguin006/Bone_Main007/Bone_Torso007/Right Flip007
+        weight: 1
+      - path: Penguin006/Bone_Main007/Dummy018
+        weight: 1
+      - path: Penguin006/Bone_Main007/Left Foot007
+        weight: 1
+      - path: Penguin006/Bone_Main007/Right Foot007
+        weight: 1
+      - path: Penguin006/Capsule007
+        weight: 1
+      - path: Plane001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

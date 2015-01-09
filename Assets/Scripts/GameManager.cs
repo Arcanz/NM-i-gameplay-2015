@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -44,12 +43,12 @@ public class GameManager : MonoBehaviour {
 	public int Direction { get { return direction; } }
 
 	private int direction = 1;
-    private bool turning;
+    public bool turning;
 
 	public List<Player> Players
 	{
 		//NOTE: Gets new players once, then stores it
-		get { return players ?? (players = FindObjectsOfType<Player>().ToList()); }
+		get { return players ?? (players = FindObjectsOfType<Player>().ToList().OrderBy(p => p.ID).ToList()); }
 	}
 
 	public List<KeyCode> LeftKeyCodes
@@ -72,19 +71,25 @@ public class GameManager : MonoBehaviour {
 			for (var i = 0; i < NumberOfPlayers; i++)
 			{
 				var player = Resources.Load("Prefabs/Player" + i) as GameObject;
-				if (player != null)
-				{
-					player.GetComponent<Player>().ID = i;
-					player.GetComponent<Player>().alive = true;
-					var temp = new Vector3(-4f + i*5f, 0.75f, 2.5f);
-					GameObject o = Instantiate(player, temp, Quaternion.Euler(0, -90, 0)) as GameObject;
-					o.name = "Player" + i;
-				}
+			    if (player != null)
+			    {
+			        player.GetComponent<Player>().ID = i;
+			        player.GetComponent<Player>().alive = true;
+			        var temp = new Vector3 (-4f + i*5f, 0.75f, 2.5f);
+                    GameObject o = Instantiate(player, temp, Quaternion.Euler(0, -90, 0)) as GameObject;
+			        o.name = "Player" + i;
+			    }
 			}
 		}
 	}
 
-	Player FindLeadingPlayer()
+    public void IhitReverseOtherInput(float time, int ID)
+    {
+        foreach (var player in Players.Where(player => player.ID != ID))
+            player.SetReversePersonalInput(time);
+    }
+
+    Player FindLeadingPlayer()
 	{
 		Player leadingPlayer = null;
 		foreach (var player in Players)
@@ -180,8 +185,7 @@ public class GameManager : MonoBehaviour {
     public void KillPlayer(Player player)
     {
         player.ForwardSpeed = 0;
-        player.SetOtherInputImmunity(2);
-        iTween.MoveBy(player.gameObject, new Vector3(0, 40, 0), 0.5f);
+        iTween.MoveBy(player.gameObject, new Vector3(0, 30, 0), 1f);
         StartCoroutine(MovePlayer(player));
         StartCoroutine(SetPlayerAsDead(player));
     }
