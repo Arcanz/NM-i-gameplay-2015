@@ -10,6 +10,11 @@ public class SpeedIncrease : IPickupable
 	}
 	void Update()
 	{
+		if(!triggered)
+		{
+			float offset = Time.time * 1f;
+			renderer.material.mainTextureOffset = new Vector2(0, -offset);
+		}
 		if (triggered)
 		{
 			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("FX/Powerups/Speed-Increase");
@@ -21,10 +26,4 @@ public class SpeedIncrease : IPickupable
 		}
 
 	}
-
-    void Update()
-    {
-        float offset = Time.time * 1f;
-        renderer.material.mainTextureOffset = new Vector2(0,-offset);
-    }
 }
