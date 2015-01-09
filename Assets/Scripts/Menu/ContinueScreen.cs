@@ -11,7 +11,11 @@ public class ContinueScreen : MonoBehaviour
     public List<Text> PlayerKeysTextLight;
     public List<Text> PlayerKeyTextDark;
     public GameObject ScoreDisplayer;
+    public GameObject Panel;
+    public List<Text> NumberCounter;
+    public GameObject Counter;
 
+    private bool hasRun;
     public float TimeToGameStart = 0.5f;
     private int green;
 
@@ -37,34 +41,74 @@ public class ContinueScreen : MonoBehaviour
     // Update is called once per frame
 	void Update () 
     {
-	    for (var i = 0; i < manager.Players.Count; i++)
-	        if (Input.GetKeyDown(manager.Players[i].leftKeyCode) || Input.GetKeyDown(manager.Players[i].rightKeyCode))
-	        {
-	            PlayerNameText[i].color = Color.green;
-                PlayerKeysTextLight[i].color = Color.green;
-            }
-
-	    foreach (var text in PlayerNameText)
-	        if (text.color == Color.green)
-	            green++;
-
-	    if (green == manager.Players.Count)
+        if(!hasRun)
         {
-//			AudioManager.PlaySound("StartRace");
-            StartCoroutine(StartGame());
-	    }
-	    green = 0;
+            for (var i = 0; i < manager.Players.Count; i++)
+                if (Input.GetKeyDown(manager.Players[i].leftKeyCode) || Input.GetKeyDown(manager.Players[i].rightKeyCode))
+                {
+                    PlayerNameText[i].color = Color.green;
+                    PlayerKeysTextLight[i].color = Color.green;
+                }
+
+            foreach (var text in PlayerNameText)
+                if (text.color == Color.green)
+                    green++;
+
+            if (green == manager.Players.Count)
+            {
+                StartCoroutine(StartGame());
+                hasRun = true;
+            }
+            green = 0;
+        }
     }
 
     IEnumerator StartGame()
     {
         yield return new WaitForSeconds(TimeToGameStart);
-        manager.GameStarted = true;
-        gameObject.SetActive(false);
         ScoreDisplayer.SetActive(true);
 		AudioManager.StopSound("MX/Menu");
-		AudioManager.StopSound("FX/Amb/Waves-Light");
-		AudioManager.PlaySound("MX/BanjoAttack");
+        Panel.SetActive(false);
+        AudioManager.PlaySound("FX/Race-Start/Countdown-Three");
+        Counter.SetActive(true);
+        StartCoroutine(Countdown3());
     }
 
+    IEnumerator Countdown3()
+    {
+        yield return new WaitForSeconds(0.8f);
+        AudioManager.PlaySound("FX/Race-Start/Countdown-Two");
+        foreach (var text in NumberCounter)
+            text.text = "2";
+        NumberCounter[1].color = new Color(1, 0.50f, 0.01f);
+        StartCoroutine(Countdown2());
+    }
+    IEnumerator Countdown2()
+    {
+        yield return new WaitForSeconds(0.8f);
+        AudioManager.PlaySound("FX/Race-Start/Countdown-One");
+        foreach (var text in NumberCounter)
+            text.text = "1";
+        NumberCounter[1].color = Color.yellow;
+        StartCoroutine(Countdown1());
+    }
+    IEnumerator Countdown1()
+    {
+        yield return new WaitForSeconds(0.8f);
+        AudioManager.PlaySound("FX/Race-Start/Countdown-GO");
+        foreach (var text in NumberCounter)
+            text.text = "GO";
+        NumberCounter[1].color = Color.green;
+        
+        StartCoroutine(CountdownGo());
+    }
+    IEnumerator CountdownGo()
+    {
+        yield return new WaitForSeconds(0.5f);
+        manager.GameStarted = true;
+        AudioManager.PlaySound("MX/BanjoAttack");
+        foreach (var text in NumberCounter)
+            text.text = "";
+        Counter.SetActive(false);
+    }
 }
