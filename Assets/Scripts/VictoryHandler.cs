@@ -38,7 +38,6 @@ public class VictoryHandler : MonoBehaviour
         PlacePlayersAtPodium();
         gameOverMenu.SetActive(true);
         cameraScript.victorious = true;
-        
 	}
 
 	void PlacePlayersAtPodium()
