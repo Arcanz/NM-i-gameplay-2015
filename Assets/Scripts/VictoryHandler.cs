@@ -2,7 +2,8 @@
 using System.Linq;
 using UnityEngine;
 
-public class VictoryHandler : MonoBehaviour {
+public class VictoryHandler : MonoBehaviour
+{
 	private GameObject Podium, FirstPlacePlayer, SecondPlacePlayer, ThirdPlacePlayer, ForthPlacePlayer;
     private GameManager manager;
     private CameraPlayerMovement cameraScript;
@@ -12,7 +13,8 @@ public class VictoryHandler : MonoBehaviour {
     public GameObject gameOverMenu;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		Podium = Resources.Load("Prefabs/VictoryPodium") as GameObject;
 	    PlayerPodiumPos = new List<Vector3>();
         PlayerPodiumPos.Add(new Vector3(-1.3f, 6.6f, -4.6f)); // First Place
@@ -26,9 +28,11 @@ public class VictoryHandler : MonoBehaviour {
 	    cameraScript = FindObjectOfType<Camera>().GetComponent<CameraPlayerMovement>();
 	    players = manager.Players;
 	}
-	
+
 	void OnTriggerEnter(Collider playerCollider)
 	{
+		AudioManager.StopSound("MX/BanjoAttack");
+		AudioManager.PlaySound("MX/Victory");
 	    manager.GameStarted = false;
 		Instantiate(Podium, new Vector3(4,1f,0),Quaternion.Euler(0,-130,0));
         PlacePlayersAtPodium();
@@ -36,7 +40,7 @@ public class VictoryHandler : MonoBehaviour {
         gameOverMenu.SetActive(true);
         
 	}
-	
+
 	void PlacePlayersAtPodium()
 	{
         rankPlayers = players.OrderByDescending(p => p.Score).ToList();
@@ -49,8 +53,8 @@ public class VictoryHandler : MonoBehaviour {
 	    }
 	}
 	// Update is called once per frame
-	void Update () 
+	void Update()
 	{
-	
+
 	}
 }
