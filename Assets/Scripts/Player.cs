@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
 	            speedModifierTimer += Time.deltaTime;
 	            if (speedModifierTimer >= speedModifierDuration)
 	            {
-					if(ForwardSpeed == 0)
+					if(ForwardSpeed == gameManager.SlowSpeed)
 					{
 
 					}
