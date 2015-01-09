@@ -63,11 +63,12 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
 	{
-		if(Application.loadedLevel == 1)
+		AudioManager.LoadFabric();
+		if (Application.loadedLevel == 1)
 		{
-			if(NumberOfPlayers < 2)
+			if (NumberOfPlayers < 2)
 				NumberOfPlayers = 2;
-			for(var i = 0; i < NumberOfPlayers; i++)
+			for (var i = 0; i < NumberOfPlayers; i++)
 			{
 				var player = Resources.Load("Prefabs/Player" + i) as GameObject;
 			    if (player != null)
