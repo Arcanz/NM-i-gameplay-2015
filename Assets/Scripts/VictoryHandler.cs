@@ -31,10 +31,14 @@ public class VictoryHandler : MonoBehaviour
 
 	void OnTriggerEnter(Collider playerCollider)
 	{
+		// Stop race music
 		AudioManager.StopSound("MX/BanjoAttack");
+		// Start victory music
 		AudioManager.PlaySound("MX/Victory");
 	    manager.GameStarted = false;
 		Instantiate(Podium, new Vector3(4,1f,0),Quaternion.Euler(0,-130,0));
+		// play Applause SFX
+		AudioManager.PlaySound("FX/Race-End/Applause");
         PlacePlayersAtPodium();
 	    cameraScript.victorious = true;
         gameOverMenu.SetActive(true);
