@@ -5,6 +5,8 @@ public class Death : IPickupable
     private void OnTriggerEnter(Collider collider)
     {
 		AudioManager.PlaySound("FX/Powerups/Bomb", gameObject);
+	    var ob = Resources.Load("Prefabs/Detonator/Detonator-Ignitor");
+	    Instantiate(ob, gameObject.transform.position, Quaternion.identity);
         collider.gameObject.GetComponent<Player>().SetDead();
 	    Trigger();
     }

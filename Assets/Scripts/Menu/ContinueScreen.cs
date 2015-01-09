@@ -59,11 +59,10 @@ public class ContinueScreen : MonoBehaviour
     IEnumerator StartGame()
     {
         yield return new WaitForSeconds(TimeToGameStart);
-        manager.GameStarted = true;
-        gameObject.SetActive(false);
         ScoreDisplayer.SetActive(true);
 		AudioManager.StopSound("MX/Menu");
 		AudioManager.PlaySound("MX/BanjoAttack");
+        gameObject.SetActive(false);
+        manager.GameStarted = true;
     }
-
 }

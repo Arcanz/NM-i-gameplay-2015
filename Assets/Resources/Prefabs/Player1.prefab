@@ -962,13 +962,14 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   ForwardSpeed: 15
   PreviousZpos: 0
+  myScore: 0
   ID: 1
   Rend: {fileID: 0}
   alive: 1
   OLKeyCodes: 
   ORKeyCodes: 
-  leftKeyCode: 121
-  rightKeyCode: 104
+  leftKeyCode: 112
+  rightKeyCode: 108
 --- !u!137 &13743612
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &114046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 414046}
+  - 95: {fileID: 9514048}
+  m_Layer: 0
+  m_Name: Banner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &114048
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 414048}
+  - 33: {fileID: 3314048}
+  - 23: {fileID: 2314048}
+  m_Layer: 0
+  m_Name: Finish_Line_Banner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &122086
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +397,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &414046
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114046}
+  m_LocalRotation: {x: .0013824515, y: .998053849, z: .0575491339, w: .023975268}
+  m_LocalPosition: {x: .0200023651, y: 2.79955626, z: .550842285}
+  m_LocalScale: {x: .0687768385, y: .0687768534, z: .0687768534}
+  m_Children:
+  - {fileID: 414048}
+  m_Father: {fileID: 422086}
+  m_RootOrder: 11
+--- !u!4 &414048
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114048}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 414046}
+  m_RootOrder: 0
 --- !u!4 &422086
 Transform:
   m_ObjectHideFlags: 1
@@ -371,7 +429,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8599999, y: .430000007, z: 520.719971}
+  m_LocalPosition: {x: 0, y: 1.78999996, z: 519.919983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422128}
@@ -385,6 +443,7 @@ Transform:
   - {fileID: 422096}
   - {fileID: 422094}
   - {fileID: 422088}
+  - {fileID: 414046}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &422088
@@ -649,6 +708,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 422086}
   m_RootOrder: 0
+--- !u!23 &2314048
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114048}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: aefda702789d4614ea1d94856d42df0d, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &2322086
 Renderer:
   m_ObjectHideFlags: 1
@@ -869,6 +948,13 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!33 &3314048
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114048}
+  m_Mesh: {fileID: 4300000, guid: aa47925e891cadd4388c526196903457, type: 3}
 --- !u!33 &3322086
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -958,6 +1044,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &9514048
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114046}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: aa47925e891cadd4388c526196903457, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &9522086
 Animator:
   serializedVersion: 3

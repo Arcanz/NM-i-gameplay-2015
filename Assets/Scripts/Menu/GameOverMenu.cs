@@ -40,6 +40,8 @@ public class GameOverMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+		// Stop the applause
+        AudioManager.StopSound("FX/Race-End/Applause");
         Application.LoadLevel(0);
     }
 }

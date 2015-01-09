@@ -132,9 +132,10 @@ public class GameManager : MonoBehaviour {
 		var ht = new Hashtable {
         {"y", .5}, 
         {"time", time},
-        {"oncomplete", "TweenFinished"}
+        {"oncomplete", "TweenFinished"},
+        {"oncompletetarget", gameObject}
         };
-		iTween.RotateBy(go, ht);
+        iTween.RotateBy(go, ht);
     }
 
     public void TweenFinished()
@@ -144,7 +145,7 @@ public class GameManager : MonoBehaviour {
 
     public void IhitReverseAll(float pos)
 	{
-		ReverseAllPlayers(pos, 0.5f);
+		ReverseAllPlayers(pos, 0.8f);
 	}
 
 	public Player GetLeadingPlayer()
@@ -179,6 +180,7 @@ public class GameManager : MonoBehaviour {
             player.SetEnviromentalImmunity(RespawnImunityTime);
             player.SetOtherInputImmunity(RespawnImunityTime);
             player.SetDirection(direction);
+			player.StopSliding();
         }
     }
 
