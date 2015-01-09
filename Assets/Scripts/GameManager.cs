@@ -11,12 +11,15 @@ public class GameManager : MonoBehaviour {
     public bool GameStarted;
 	public GameObject scoreCrown;
 
-	public float 
-		BoostSpeed = 15f, 
-		DefaultSpeed = 10f, 
-		SlowSpeed = 5f,
-		SidewayMoveAmount = 1f,
-		SidewayInfluenceAMount = 0.5f,
+    public float
+        BoostSpeed = 15f,
+        DefaultSpeed = 10f,
+        SlowSpeed = 5f,
+        SidewayMoveAmount = 1f,
+        EnemyInfluenceAMount = 0.75f,
+        SingleInfluenceAmount = 0.75f,
+        DoubleInfluenceAmount = 0.5f,
+        TripleInfluenceAmount = 0.25f,
 		TurnSpeed = 0.1f,
 		ImmunityBlinkSpeed = .5f,
 		LowBoundry = -5.5f,
@@ -66,23 +69,29 @@ public class GameManager : MonoBehaviour {
 	void Awake()
 	{
 		AudioManager.LoadFabric();
-		if (Application.loadedLevel == 1)
-		{
-			if (NumberOfPlayers < 2)
-				NumberOfPlayers = 2;
-			for (var i = 0; i < NumberOfPlayers; i++)
-			{
-				var player = Resources.Load("Prefabs/Player" + i) as GameObject;
-			    if (player != null)
-			    {
-			        player.GetComponent<Player>().ID = i;
-			        player.GetComponent<Player>().alive = true;
-			        var temp = new Vector3 (-4f + i*5f, 0.75f, 2.5f);
-                    GameObject o = Instantiate(player, temp, Quaternion.Euler(0, -90, 0)) as GameObject;
-			        o.name = "Player" + i;
-			    }
-			}
-		}
+	    if (Application.loadedLevel == 1)
+	    {
+	        if (NumberOfPlayers < 2)
+	            NumberOfPlayers = 2;
+	        if(NumberOfPlayers == 2)
+                 EnemyInfluenceAMount = SingleInfluenceAmount;
+	        if (NumberOfPlayers == 3)
+		        EnemyInfluenceAMount = DoubleInfluenceAmount;
+		    if (NumberOfPlayers == 4)
+		        EnemyInfluenceAMount = TripleInfluenceAmount;
+	        for (var i = 0; i < NumberOfPlayers; i++)
+	        {
+	            var player = Resources.Load("Prefabs/Player" + i) as GameObject;
+	            if (player != null)
+	            {
+	                player.GetComponent<Player>().ID = i;
+	                player.GetComponent<Player>().alive = true;
+	                var temp = new Vector3(-4f + i*5f, 0.75f, 2.5f);
+	                GameObject o = Instantiate(player, temp, Quaternion.Euler(0, -90, 0)) as GameObject;
+	                o.name = "Player" + i;
+	            }
+	        }
+	    }
 	}
 
     public void IhitReverseOtherInput(float time, int ID)
@@ -170,7 +179,7 @@ public class GameManager : MonoBehaviour {
                     KillPlayer(player);
             }
 
-        if (NumberOfAlivePlayers <= 1)
+        if (NumberOfAlivePlayers <= (players.Count - 1))
             RespawnPlayers();
         }
     }
@@ -180,7 +189,7 @@ public class GameManager : MonoBehaviour {
         foreach (var player in Players.Where(player => !player.alive))
         {
             var posZ = AlivePlayers.Count > 0 ? AlivePlayers.First().transform.position.z : FindObjectOfType<Camera>().camera.transform.position.z;
-            player.transform.position = new Vector3(-4 + (player.ID*2), 0.75f, posZ);
+            player.transform.position = new Vector3(-4 + (player.ID * 2), 0.75f, posZ - 5f*direction);
             player.ForwardSpeed = DefaultSpeed;
             player.alive = true;
             player.SetEnviromentalImmunity(RespawnImunityTime);
@@ -206,7 +215,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator SetPlayerAsDead(Player player)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         player.alive = false;
     }
 }
