@@ -23,7 +23,7 @@ public class VictoryHandler : MonoBehaviour {
 	    if (gameOverMenu == null)
             gameOverMenu = GameObject.Find("gameOverPanel");
 	    manager = FindObjectOfType<GameManager>();
-	    cameraScript = FindObjectOfType<Camera>().GetComponent<CameraPlayerMovement>();
+        cameraScript = FindObjectOfType<CameraPlayerMovement>();
 	    players = manager.Players;
 	}
 	
@@ -32,8 +32,8 @@ public class VictoryHandler : MonoBehaviour {
 	    manager.GameStarted = false;
 		Instantiate(Podium, new Vector3(4,1f,0),Quaternion.Euler(0,-130,0));
         PlacePlayersAtPodium();
-	    cameraScript.victorious = true;
         gameOverMenu.SetActive(true);
+        cameraScript.victorious = true;
         
 	}
 	

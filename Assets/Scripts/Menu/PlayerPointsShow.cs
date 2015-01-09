@@ -23,11 +23,10 @@ public class PlayerPointsShow : MonoBehaviour {
 	{
 	    if (manager.GameStarted)
 	    {
-	        var sortedPlayers = manager.Players.OrderByDescending(p => p.Score).ToList();
-            for (var i = 0; i < sortedPlayers.Count; i++)
+            for (var i = 0; i < manager.Players.Count; i++)
 	        {
-                PlayerScoreText[i].text = sortedPlayers[i].Score.ToString();
-                PlayerScoreTextLight[i].text = sortedPlayers[i].Score.ToString();
+                PlayerScoreText[i].text = manager.Players[i].Score.ToString();
+                PlayerScoreTextLight[i].text = manager.Players[i].Score.ToString();
 	        }
 	    }
 	}
