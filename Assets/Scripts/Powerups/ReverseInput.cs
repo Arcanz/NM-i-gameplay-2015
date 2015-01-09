@@ -6,8 +6,19 @@ public class ReverseInput : IPickupable
 	{
 		AudioManager.PlaySound("ReverseInput", gameObject);
 		playerCollider.GetComponent<Player>().SetReverseOthersInput(2f);
-		Trigger();
+        HideMe();
 	}
+
+    void HideMe()
+    {
+        gameObject.collider.enabled = false;
+        var something = GetComponentsInChildren<MeshRenderer>();
+        foreach (var vari in something)
+        {
+            vari.enabled = false;
+            
+        }
+    }
 	void Update()
 	{
 		gameObject.transform.Rotate(0,2,0);

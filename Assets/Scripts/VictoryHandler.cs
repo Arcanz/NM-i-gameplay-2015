@@ -25,7 +25,7 @@ public class VictoryHandler : MonoBehaviour
 	    if (gameOverMenu == null)
             gameOverMenu = GameObject.Find("gameOverPanel");
 	    manager = FindObjectOfType<GameManager>();
-	    cameraScript = FindObjectOfType<Camera>().GetComponent<CameraPlayerMovement>();
+        cameraScript = FindObjectOfType<CameraPlayerMovement>();
 	    players = manager.Players;
 	}
 
@@ -40,9 +40,8 @@ public class VictoryHandler : MonoBehaviour
 		// play Applause SFX
 		AudioManager.PlaySound("FX/Race-End/Applause");
         PlacePlayersAtPodium();
-	    cameraScript.victorious = true;
         gameOverMenu.SetActive(true);
-        
+        cameraScript.victorious = true;
 	}
 
 	void PlacePlayersAtPodium()

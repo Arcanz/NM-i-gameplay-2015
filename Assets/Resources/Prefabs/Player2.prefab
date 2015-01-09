@@ -960,21 +960,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  BoostSpeed: 15
-  DefaultSpeed: 10
-  SlowSpeed: 5
   ForwardSpeed: 10
-  SidewayMoveAmount: .5
-  TurnSpeed: .100000001
-  ImmunityBlinkSpeed: .5
   PreviousZpos: 0
+  myScore: 0
   ID: 0
   Rend: {fileID: 0}
   alive: 0
   OLKeyCodes: 
   ORKeyCodes: 
-  leftKeyCode: 111
-  rightKeyCode: 108
+  leftKeyCode: 100
+  rightKeyCode: 99
 --- !u!137 &13717008
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
