@@ -6,7 +6,7 @@ public class InputLock : IPickupable
 	{
 		AudioManager.PlaySound("FX/Powerups/Flask", gameObject);
 		playerCollider.GetComponent<Player>().SetNoPersonalInput(2f);
-		Despawn();
+		Trigger();
 	}
 	void Update()
 	{
