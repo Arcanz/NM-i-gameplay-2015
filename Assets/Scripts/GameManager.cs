@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour {
             player.SetEnviromentalImmunity(RespawnImunityTime);
             player.SetOtherInputImmunity(RespawnImunityTime);
             player.SetDirection(direction);
+			player.StopSliding();
         }
     }
 
