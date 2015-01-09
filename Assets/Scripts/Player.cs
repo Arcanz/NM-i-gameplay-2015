@@ -97,6 +97,15 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 	    myScore = Score;
+		if (Time.time%AudioManager.PenguinSquackInterval <= 0.1f)
+		{
+			if(Random.Range(0f, 1f)>AudioManager.PenguinSquackChance)
+				AudioManager.PlaySound("PenguinSquack", gameObject);
+		}
+		if (Time.time%AudioManager.PengquinStepInterval <= 0.1f)
+		{
+//			AudioManager.PlaySound("PenguinStep");
+		}
 	    if (gameManager.GameStarted)
 	    {
 	        #region "Powerup" timers
@@ -200,6 +209,7 @@ public class Player : MonoBehaviour
 	        {
 	            if (pos > PreviousZpos)
 	            {
+//					AudioManager.PlaySound("ScoreIncrease");
 	                distanceScore++;
 	                PreviousZpos = pos;
 	            }
@@ -208,6 +218,7 @@ public class Player : MonoBehaviour
 	        {
 	            if (pos < PreviousZpos)
 	            {
+//					AudioManager.PlaySound("ScoreIncrease");
 	                distanceScore++;
 	                PreviousZpos = pos;
 	            }

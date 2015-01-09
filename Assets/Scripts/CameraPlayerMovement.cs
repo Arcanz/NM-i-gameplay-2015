@@ -2,7 +2,7 @@
 
 public class CameraPlayerMovement : MonoBehaviour
 {
-    public float MyTime, cameraOfset;
+	public float MyTime, cameraOfset;
 	private GameManager gameManager;
     public bool victorious;
 	void Start()

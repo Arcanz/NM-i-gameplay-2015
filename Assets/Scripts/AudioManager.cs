@@ -1,51 +1,64 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AudioManager : MonoBehaviour {
+public static class AudioManager
+{
 
-	bool isFabricLoaded = false;
-
-	public void Start()
+	public static float 
+		PenguinSquackInterval = 1f,
+		PenguinSquackChance = 1f, // 0-1 = 0-100% chance
+		PengquinStepInterval = 0.3f; 
+	private static void playAudio(string eventName)
 	{
-		// load the AudioManager
-		// this probably should be someplace else!
-		if (!Fabric.EventManager.Instance)
-		{
-			LoadFabric();
-		}
-		else
-			Debug.Log("Fabric already loaded");
+		Debug.Log("Triggered sound:" + eventName);
+
+		//AUDIO: without position
+		Fabric.EventManager.Instance.PostEvent(eventName);
+	}
+	private static void playAudioWithPosition(string eventName, GameObject ob)
+	{
+		Debug.Log("Triggered sound:" + eventName);
+		Debug.Log("At position:" + ob);
+		
+		//AUDIO: with position
+		Fabric.EventManager.Instance.PostEvent(eventName, ob);
 	}
 
-	void Update()
+	public static bool FabricLoaded {get { return Fabric.EventManager.Instance; }}
+
+
+	public static void PlaySound(string n)
 	{
-		// this probably can be implemented better with a CoRoutine and yield, but I couldn't figure out how! -- Jory
-		// has Fabric finished loading?
-		if (!isFabricLoaded)
-		{
-			if (Application.isLoadingLevel)
-			{
-				Debug.Log("Level is still loading, so wait on trying to play the music!");
-			}
-			else
-			{
-				// has Fabric been loaded?
-				if (Fabric.EventManager.Instance)
-				{
-					isFabricLoaded = true;
-					Debug.Log("Fabric loaded");
-					// then start playing the menu music!
-					//Fabric.EventManager.Instance.PostEvent("MX_Menu_lp", gameObject);
-				}
-				else
-				{
-					Debug.Log("Fabric hasn't loaded yet!");
-				}
-			}
-		}
+		LoadFabric();
+		if (FabricLoaded)
+			playAudio(n);
 	}
-	void LoadFabric()
+
+	public static void PlaySound(string n, GameObject ob)
 	{
+		LoadFabric();
+		if (FabricLoaded)
+			playAudioWithPosition(n, ob);
+	}
+
+	public static void StopSound(string n)
+	{
+		Fabric.EventManager.Instance.PostEvent(n, Fabric.EventAction.StopAll);
+	}
+
+	public static void FadeOutMusic(string n) {
+		// fade out the music!
+		Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
+		if (component != null) {
+			component.FadeOut(0.1f, 0.5f);
+		}
+    }
+
+	public static void LoadFabric()
+	{
+		if (FabricLoaded) { // || Application.isLoadingLevel) {
+			return;
+		}
 		Application.LoadLevelAdditive("Audio");
 	}
 }
