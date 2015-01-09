@@ -15,7 +15,7 @@ public class ImmunityAll : IPickupable
 
 		if (triggered)
 		{
-			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("GodModeSheild");
+			Fabric.Component comp = Fabric.FabricManager.Instance.GetComponentByName("FX/Powerups/Immunity-All");
 			if (comp != null)
 			{
 				if(comp.IsPlaying() == false)
