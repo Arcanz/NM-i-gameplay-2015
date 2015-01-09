@@ -10,12 +10,20 @@ public class ContinueScreen : MonoBehaviour
     public List<Text> PlayerNameText;
     public List<Text> PlayerKeysTextLight;
     public List<Text> PlayerKeyTextDark;
+    public GameObject ScoreDisplayer;
 
     public float TimeToGameStart = 0.5f;
     private int green;
 
     void Start()
     {
+        if (ScoreDisplayer != null)
+            ScoreDisplayer.SetActive(false);
+        else
+        {
+            ScoreDisplayer = GameObject.Find("ScoreDisplayer");
+            ScoreDisplayer.SetActive(false);
+        }
         manager = FindObjectOfType<GameManager>();
         for (var i = 0; i < manager.Players.Count; i++)
         {
@@ -52,6 +60,7 @@ public class ContinueScreen : MonoBehaviour
         yield return new WaitForSeconds(TimeToGameStart);
         manager.GameStarted = true;
         gameObject.SetActive(false);
+        ScoreDisplayer.SetActive(true);
     }
 
 }

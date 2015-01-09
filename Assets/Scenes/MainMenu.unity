@@ -5339,8 +5339,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401176388}
-  m_LocalRotation: {x: .012593531, y: -.958455443, z: .0428477973, w: .281724453}
-  m_LocalPosition: {x: 44.9162407, y: -26.0865746, z: 459.272949}
+  m_LocalRotation: {x: .148651585, y: .519957602, z: .0858197063, w: -.836768687}
+  m_LocalPosition: {x: 2.86999989, y: -1.66243792, z: -.800000012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5881,7 +5881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sharedMaterial: {fileID: 2100000, guid: 656fde119942645aa8e062e04c119aa1, type: 2}
   waterQuality: 2
-  edgeBlend: 0
+  edgeBlend: 1
 --- !u!114 &1682041488
 MonoBehaviour:
   m_ObjectHideFlags: 0
