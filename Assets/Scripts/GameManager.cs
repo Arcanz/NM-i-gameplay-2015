@@ -132,9 +132,10 @@ public class GameManager : MonoBehaviour {
 		var ht = new Hashtable {
         {"y", .5}, 
         {"time", time},
-        {"oncomplete", "TweenFinished"}
+        {"oncomplete", "TweenFinished"},
+        {"oncompletetarget", gameObject}
         };
-		iTween.RotateBy(go, ht);
+        iTween.RotateBy(go, ht);
     }
 
     public void TweenFinished()
