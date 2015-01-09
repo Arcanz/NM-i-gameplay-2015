@@ -234,6 +234,10 @@ public class Player : MonoBehaviour
 	    }
 	}
 
+    public void GivePlayerWinScore(int score)
+    {
+        hurdleScore += score;
+    }
 	void FixedUpdate()
 	{
 		var p = transform.position;
@@ -261,14 +265,14 @@ public class Player : MonoBehaviour
 		//Others pushing left?
 		if (OLKeyCodes.Where(keycode => keycode != leftKeyCode).Where(Input.GetKeyDown).Any())
 		{
-			horizontalMove(gameManager.SidewayInfluenceAMount, controlDirection);
+			horizontalMove(gameManager.EnemyInfluenceAMount, controlDirection);
 			return;
 		}
 
 		//Others pushing right?
 		if (ORKeyCodes.Where(keyCode => keyCode != rightKeyCode).Where(Input.GetKeyDown).Any())
 		{
-			horizontalMove(-gameManager.SidewayInfluenceAMount, controlDirection);
+			horizontalMove(-gameManager.EnemyInfluenceAMount, controlDirection);
 		}
 	}
 
@@ -404,7 +408,7 @@ public class Player : MonoBehaviour
 	{
 		animation.Play("Fall to slide");
 		StartCoroutine(StartAnimation("Slide", 0.5f));
-		StartCoroutine(StartAnimation("Rise for slide", 1f));
+		StartCoroutine(StartAnimation("Rise for slide", 1.5f));
 		speedModifierTimer = 0;
 		ForwardSpeed = gameManager.BoostSpeed;
 		speedModifierDuration = time;

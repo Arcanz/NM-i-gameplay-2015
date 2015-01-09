@@ -7,6 +7,7 @@ public class VictoryHandler : MonoBehaviour
 	private GameObject Podium, FirstPlacePlayer, SecondPlacePlayer, ThirdPlacePlayer, ForthPlacePlayer;
     private GameManager manager;
     private CameraPlayerMovement cameraScript;
+    private PlayerPointsShow playerGUI;
     private List<Player> players, rankPlayers;
     private List<Vector3> PlayerPodiumPos;
     private int Score;
@@ -24,6 +25,7 @@ public class VictoryHandler : MonoBehaviour
 
 	    if (gameOverMenu == null)
             gameOverMenu = GameObject.Find("gameOverPanel");
+	    playerGUI = FindObjectOfType<PlayerPointsShow>();
 	    manager = FindObjectOfType<GameManager>();
         cameraScript = FindObjectOfType<CameraPlayerMovement>();
 	    players = manager.Players;
@@ -35,7 +37,11 @@ public class VictoryHandler : MonoBehaviour
 		AudioManager.StopSound("MX/BanjoAttack");
 		// Start victory music
 		AudioManager.PlaySound("MX/Victory");
-	    manager.GameStarted = false;
+
+	    playerGUI.victory = true;
+	    playerCollider.GetComponent<Player>().GivePlayerWinScore(100);
+	    
+        manager.GameStarted = false;
 		Instantiate(Podium, new Vector3(4,1f,0),Quaternion.Euler(0,-130,0));
 		// play Applause SFX
 		AudioManager.PlaySound("FX/Race-End/Applause");
