@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour {
                     KillPlayer(player);
             }
 
-        if (NumberOfAlivePlayers <= 1)
+        if (NumberOfAlivePlayers <= (players.Count - 1))
             RespawnPlayers();
         }
     }
@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator SetPlayerAsDead(Player player)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         player.alive = false;
     }
 }

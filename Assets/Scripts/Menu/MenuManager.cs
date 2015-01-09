@@ -23,6 +23,10 @@ public class MenuManager : MonoBehaviour
 
 			}
 		}
+		float shouldIPlay = Mathf.RoundToInt(Random.Range(0f, 0.3f) * 1000);
+
+		if (shouldIPlay == 1)		//>AudioManager.PenguinSquackChance)
+			AudioManager.PlaySound("FX/General/Penguin-Squawk", gameObject);
 	}
 
     public void ShowMenu(Menu menu)
