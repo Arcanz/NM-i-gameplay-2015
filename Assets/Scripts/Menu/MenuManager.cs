@@ -20,6 +20,7 @@ public class MenuManager : MonoBehaviour
 			{
 				themeSongPlaying = true;
 				AudioManager.PlaySound("MX/Menu");
+				AudioManager.PlaySound("FX/Amb/Waves-Light");
 
 			}
 		}

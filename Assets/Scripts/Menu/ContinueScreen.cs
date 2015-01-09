@@ -63,6 +63,7 @@ public class ContinueScreen : MonoBehaviour
         gameObject.SetActive(false);
         ScoreDisplayer.SetActive(true);
 		AudioManager.StopSound("MX/Menu");
+		AudioManager.StopSound("FX/Amb/Waves-Light");
 		AudioManager.PlaySound("MX/BanjoAttack");
     }
 
