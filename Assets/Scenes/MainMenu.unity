@@ -5408,8 +5408,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401176388}
-  m_LocalRotation: {x: .21469456, y: .543827057, z: .146324605, w: -.797964573}
-  m_LocalPosition: {x: 7.1288662, y: -3.37347412, z: -2.96967006}
+  m_LocalRotation: {x: .148651585, y: .519957602, z: .0858197063, w: -.836768687}
+  m_LocalPosition: {x: 2.86999989, y: -1.66243792, z: -.800000012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6869,7 +6869,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Andreas Hanssveen\nEven Hauger\nEirik R. A. Hanssen\nMorten A. Salvesen\nIngse
-    Anzj\xF8n\nHermann Eytorsson\nAnders Lundvall Berg"
+    Anzj\xF8n\nHermann Eytorsson\nAnders Lundvall Berg\nJory Prum"
 --- !u!222 &2113056992
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6886,14 +6886,14 @@ RectTransform:
   m_GameObject: {fileID: 2113056990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .466463208, y: .362998456, z: .359487623}
+  m_LocalScale: {x: .457133949, y: .335550606, z: .352297872}
   m_Children: []
   m_Father: {fileID: 1763947677}
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 28, y: -39}
-  m_SizeDelta: {x: 526, y: 343}
+  m_AnchoredPosition: {x: 28, y: -44}
+  m_SizeDelta: {x: 526, y: 396}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &2119944124
 GameObject:
@@ -6921,14 +6921,14 @@ RectTransform:
   m_GameObject: {fileID: 2119944124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .466463178, y: .359485477, z: .359485477}
+  m_LocalScale: {x: .457133919, y: .332303286, z: .352295786}
   m_Children: []
   m_Father: {fileID: 1763947677}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 24, y: -38}
-  m_SizeDelta: {x: 526, y: 343}
+  m_AnchoredPosition: {x: 24, y: -43}
+  m_SizeDelta: {x: 526, y: 396}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2119944126
 MonoBehaviour:
@@ -6957,7 +6957,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Andreas Hanssveen\nEven Hauger\nEirik R. A. Hanssen\nMorten A. Salvesen\nIngse
-    Anzj\xF8n\nHermann Eytorsson\nAnders Lundvall Berg"
+    Anzj\xF8n\nHermann Eytorsson\nAnders Lundvall Berg\nJory Prum"
 --- !u!222 &2119944127
 CanvasRenderer:
   m_ObjectHideFlags: 0

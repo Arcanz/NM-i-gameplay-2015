@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour {
 
     public void IhitReverseAll(float pos)
 	{
-		ReverseAllPlayers(pos, 0.5f);
+		ReverseAllPlayers(pos, 0.8f);
 	}
 
 	public Player GetLeadingPlayer()
