@@ -15,7 +15,7 @@ public class AudioFinishLine : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider playerCollider)
 	{
-		AudioManager.PlaySound("FX/Race-End/Horn-Sound");
+		//AudioManager.PlaySound("FX/Race-End/Horn-Sound");
 	}
 
 }
