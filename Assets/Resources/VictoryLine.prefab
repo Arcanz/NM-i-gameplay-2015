@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &132900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 432900}
+  - 33: {fileID: 3332900}
+  - 65: {fileID: 6532900}
+  - 23: {fileID: 2332900}
+  - 114: {fileID: 11432900}
+  m_Layer: 0
+  m_Name: AudioFinishLine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &190066
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +416,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &432900
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132900}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.0599999987, y: 1.96000004, z: -1.15999997}
+  m_LocalScale: {x: 21.1259937, y: 2.90538502, z: .493196994}
+  m_Children: []
+  m_Father: {fileID: 490066}
+  m_RootOrder: 12
 --- !u!4 &490066
 Transform:
   m_ObjectHideFlags: 1
@@ -404,7 +435,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.78999996, z: 519.919983}
+  m_LocalPosition: {x: .199999809, y: 1.66999996, z: 519.950012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 490106}
@@ -419,6 +450,7 @@ Transform:
   - {fileID: 490110}
   - {fileID: 490102}
   - {fileID: 490086}
+  - {fileID: 432900}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &490068
@@ -665,7 +697,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .140000105, y: 1.83999991, z: 5.87005615}
+  m_LocalPosition: {x: .140000001, y: 1.84000003, z: 15.79}
   m_LocalScale: {x: 21.1259937, y: 2.90538502, z: 2.90538502}
   m_Children: []
   m_Father: {fileID: 490066}
@@ -708,6 +740,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 490084}
   m_RootOrder: 0
+--- !u!23 &2332900
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132900}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &2390090
 Renderer:
   m_ObjectHideFlags: 1
@@ -948,6 +1000,13 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!33 &3332900
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132900}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3390090
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1032,6 +1091,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190112}
   m_Mesh: {fileID: 4300000, guid: 715a7c14fead0a74baf5f77cc2ae4904, type: 3}
+--- !u!65 &6532900
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6590112
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1209,6 +1280,17 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11432900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e203f1f5b652f4f5ca4e2830e0f6b5e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11490112
 MonoBehaviour:
   m_ObjectHideFlags: 1

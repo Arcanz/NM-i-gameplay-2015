@@ -22,12 +22,13 @@ public class MenuPlayerSelect : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        AudioManager.PlaySound("FX/Interface/Bloop");
+		AudioManager.PlaySound("FX/Interface/Bloop");
         Application.LoadLevel(1);
     }
 
     public void ExitPressed()
     {
+		AudioManager.PlaySound("FX/Interface/Bloop");
         Application.Quit();
     }
 }

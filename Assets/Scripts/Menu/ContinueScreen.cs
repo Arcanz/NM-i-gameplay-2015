@@ -48,6 +48,8 @@ public class ContinueScreen : MonoBehaviour
                 {
                     PlayerNameText[i].color = Color.green;
                     PlayerKeysTextLight[i].color = Color.green;
+					// play a unique keyboard check-in sound for the player
+					AudioManager.PlaySound("FX/Interface/Checkin/Player" + (i+1));
                 }
 
             foreach (var text in PlayerNameText)
@@ -69,7 +71,7 @@ public class ContinueScreen : MonoBehaviour
         ScoreDisplayer.SetActive(true);
 		AudioManager.StopSound("MX/Menu");
         Panel.SetActive(false);
-        AudioManager.PlaySound("FX/Race-Start/Countdown-Three");
+		AudioManager.PlaySound("FX/Race-Start/Countdown-Three");
         Counter.SetActive(true);
         StartCoroutine(Countdown3());
     }
@@ -77,7 +79,7 @@ public class ContinueScreen : MonoBehaviour
     IEnumerator Countdown3()
     {
         yield return new WaitForSeconds(0.8f);
-        AudioManager.PlaySound("FX/Race-Start/Countdown-Two");
+		AudioManager.PlaySound("FX/Race-Start/Countdown-Two");
         foreach (var text in NumberCounter)
             text.text = "2";
         NumberCounter[1].color = new Color(1, 0.50f, 0.01f);
@@ -86,7 +88,7 @@ public class ContinueScreen : MonoBehaviour
     IEnumerator Countdown2()
     {
         yield return new WaitForSeconds(0.8f);
-        AudioManager.PlaySound("FX/Race-Start/Countdown-One");
+		AudioManager.PlaySound("FX/Race-Start/Countdown-One");
         foreach (var text in NumberCounter)
             text.text = "1";
         NumberCounter[1].color = Color.yellow;
@@ -95,7 +97,7 @@ public class ContinueScreen : MonoBehaviour
     IEnumerator Countdown1()
     {
         yield return new WaitForSeconds(0.8f);
-        AudioManager.PlaySound("FX/Race-Start/Countdown-GO");
+		AudioManager.PlaySound("FX/Race-Start/Countdown-GO");
         foreach (var text in NumberCounter)
             text.text = "GO";
         NumberCounter[1].color = Color.green;
